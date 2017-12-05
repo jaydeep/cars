@@ -1,6 +1,6 @@
 //
 //  car.h
-//  cis22c_lab5_js
+//  cis22c_final_project_js
 //
 //  Created by Jaydeep Singh on 11/21/17.
 //  Copyright © 2017 DeAnza. All rights reserved.
