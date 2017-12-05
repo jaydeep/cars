@@ -23,5 +23,8 @@
     <ClInclude Include="node.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="car.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
