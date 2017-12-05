@@ -26,5 +26,8 @@
     <ClInclude Include="car.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="binarysearchtree.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
