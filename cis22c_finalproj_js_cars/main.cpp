@@ -81,7 +81,7 @@ int main() {
 	std::cout << "  [f] List data in hash table sequence" << std::endl;
 	std::cout << "  [g] List data in sorted key sequence" << std::endl;
 	std::cout << "  [h] Print Indented Tree" << std::endl;
-	std::cout << "  [i] Efficiency";
+	std::cout << "  [i] Efficiency" << std::endl;
 	std::cout << "  [q] Quit" << std::endl;
 	std::cout << std::endl << "Please enter a letter to select a menu option: ";
 	std::cin >> menuInput;
@@ -133,7 +133,7 @@ int main() {
 		std::cout << "  [f] List data in hash table sequence" << std::endl;
 		std::cout << "  [g] List data in sorted key sequence" << std::endl;
 		std::cout << "  [h] Print Indented Tree" << std::endl;
-		std::cout << "  [i] Efficiency";
+		std::cout << "  [i] Efficiency" << std::endl;
 		std::cout << "  [q] Quit" << std::endl;
 		std::cout << std::endl << "Please enter a letter to select a menu option: ";
 		std::cin >> menuInput;
