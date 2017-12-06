@@ -12,47 +12,26 @@
 #include "binarysearchtree.h"
 #include "car.h"
 #include "hash.h"
-#include <unordered_map>
+//#include <unordered_map>
 
 class headNode
 {
 private:
 	int count;
 	int arySize;
-	std::unordered_map<int, MyCar*> *pHash;
+	MyHash pHash;
 	BinarySearchTree<std::string> *pTree;
 
 public:
-	headNode(int, int, std::unordered_map<int, MyCar*>, BinarySearchTree<std::string>*);
-	headNode(int, int, std::unordered_map<int, MyCar*>);
-	headNode(int, int);
-	int setCount(int);
-	int setArySize(int);
+	headNode(int, int, MyHash, BinarySearchTree<std::string>*);
 };
 
-headNode::headNode(int c, int s) {
-	// , std::unordered_map<int, MyCar*>* p, BinarySearchTree<std::string>* t) {
+
+headNode::headNode(int c, int s, MyHash p, BinarySearchTree<std::string>* t) {
 	count = c;
 	arySize = s;
-	//pHash = p;
-	//pTree = t;
-
-}
-headNode::headNode(int c, int s, std::unordered_map<int, MyCar*> p) {
-	// , std::unordered_map<int, MyCar*>* p, BinarySearchTree<std::string>* t) {
-	count = c;
-	arySize = s;
-	//pHash = p;
-	//pTree = t;
-
-}
-headNode::headNode(int c, int s, std::unordered_map<int, MyCar*> p, BinarySearchTree<std::string>*) {
-	// , std::unordered_map<int, MyCar*>* p, BinarySearchTree<std::string>* t) {
-	count = c;
-	arySize = s;
-	//pHash = p;
-	//pTree = t;
-
+	pHash = p;
+	pTree = t;
 }
 //helper functions
 void addNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*);
@@ -65,9 +44,9 @@ int main() {
 	std::ifstream inputFile;
 	std::ofstream nameOutput, bdayOutput;
 	// Hashtable on vin number stores the pointer to car record
-	std::hash<char*> ptr_hash;
-	std::unordered_map<int, MyCar*> hashtable;
-	char menuInput;
+	//std::hash<char*> ptr_hash;
+	//std::unordered_map<int, MyCar*> hashtable;
+	//char menuInput;
 
 	//create the two trees
 	BinarySearchTree<std::string>* carBst = new BinarySearchTree<std::string>();
@@ -77,7 +56,7 @@ int main() {
 	std::cout << "One record per line and each line would have VIN, make, model and year of the car." << std::endl;
 
 	//std::getline(std::cin, filePath);
-	filePath = "car.txt";
+	filePath = "car5.txt";
 	inputFile.open(filePath);
 
 	while (!inputFile) //file input validation
@@ -143,15 +122,13 @@ int main() {
 			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
 		}
 		mycar1 = new MyCar(VIN, make, model, year);
-		p_hash.add(VIN, mycar1);
+		p_hash.add(mycar1);
 		//strcpy(temp_VIN, VIN.c_str());	
 		//hashtable[ptr_hash(temp_VIN)] = mycar1;
 		std::cout << mycar1->printCar() << '\n';
 	}
-	headNode *myHeadNode = new headNode(25, 25);
-	headNode *myHeadNode1 = new headNode(25, 25, hashtable);
-	headNode *myHeadNode2 = new headNode(25, 25, hashtable, carBst);
-
+	p_hash.printAll();
+	headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
 	system("pause");
 	return 0;
 	inputFile.close(); //Close file now that we are done with it
