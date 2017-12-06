@@ -11,6 +11,7 @@
 #include <string>
 #include "binarysearchtree.h"
 #include "car.h"
+#include "hash.h"
 #include <unordered_map>
 
 class headNode
@@ -64,6 +65,7 @@ int main() {
 	std::ifstream inputFile;
 	std::ofstream nameOutput, bdayOutput;
 	// Hashtable on vin number stores the pointer to car record
+	std::hash<char*> ptr_hash;
 	std::unordered_map<int, MyCar*> hashtable;
 	char menuInput;
 
@@ -86,7 +88,14 @@ int main() {
 		std::getline(std::cin, filePath);
 		inputFile.open(filePath);
 	}
-
+	int size = 0;
+	while (std::getline(inputFile, tempInput))
+	{
+		size = size + 1;
+	}
+	inputFile.close();
+	MyHash p_hash = MyHash(size);
+	inputFile.open(filePath); 
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
 
 	//get data from file and add them to tree
@@ -95,6 +104,7 @@ int main() {
 	std::string model;
 	std::string year;
 	std::size_t found;
+	//char temp_VIN[1024];
 	int counter = 0;
 	MyCar *mycar1;
 	while (std::getline(inputFile, tempInput))
@@ -133,8 +143,9 @@ int main() {
 			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
 		}
 		mycar1 = new MyCar(VIN, make, model, year);
-		counter = counter + 1;
-		hashtable[counter] = mycar1;
+		p_hash.add(VIN, mycar1);
+		//strcpy(temp_VIN, VIN.c_str());	
+		//hashtable[ptr_hash(temp_VIN)] = mycar1;
 		std::cout << mycar1->printCar() << '\n';
 	}
 	headNode *myHeadNode = new headNode(25, 25);
