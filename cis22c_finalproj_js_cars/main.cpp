@@ -65,6 +65,8 @@ int main() {
 		std::cout << myCar1->printCar() << std::endl;
 	}
 
+
+
 	inputFile.close(); //Close file now that we are done with it
 	system("pause");
 	return 0;
