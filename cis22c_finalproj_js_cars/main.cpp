@@ -12,6 +12,7 @@
 #include "binarysearchtree.h"
 #include "headnode.h"
 #include "car.h"
+#include "hashtable.h"
 #include <unordered_map>
 
 //helper functions for menu 
