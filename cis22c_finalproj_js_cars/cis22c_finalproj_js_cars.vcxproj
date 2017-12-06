@@ -116,6 +116,7 @@
   <ItemGroup>
     <ClInclude Include="binarysearchtree.h" />
     <ClInclude Include="car.h" />
+    <ClInclude Include="hashtable.h" />
     <ClInclude Include="headnode.h" />
     <ClInclude Include="node.h" />
   </ItemGroup>

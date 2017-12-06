@@ -22,9 +22,11 @@ void searchByBirthday(BinarySearchTree<std::string>*);
 
 //main
 int main() {
-	std::string filePath, tempInput, tempInput1, nameOutputFile, bdayOutputFile;
+	std::string filePath, tempVIN, tempMake, tempModel, tempYear;
 	std::ifstream inputFile;
 	std::ofstream nameOutput, bdayOutput;
+	int counter = 0;
+
 	// Hashtable on vin number stores the pointer to car record
 	std::unordered_map<int, MyCar*> hashtable;
 	char menuInput;
@@ -54,12 +56,6 @@ int main() {
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
 
 	//get data from file and add them to tree
-	std::string tempVIN;
-	std::string tempMake;
-	std::string tempModel;
-	std::string tempYear;
-	int counter = 0;
-
 	MyCar *myCar1;
 	while (inputFile >> tempVIN >> tempMake >> tempModel >> tempYear) //read records line by line
 	{
