@@ -65,7 +65,74 @@ int main() {
 		std::cout << myCar1->printCar() << std::endl;
 	}
 
+	//Menu
+	std::cout << std::endl << std::endl << "Menu: " << std::endl;
+	std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
+	std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
+	std::cout << "  [c] Add Node" << std::endl;
+	std::cout << "  [d] Search by name" << std::endl;
+	std::cout << "  [e] Search by birth date" << std::endl;
+	std::cout << "  [f] Remove Node" << std::endl;
+	std::cout << "  [q] Quit" << std::endl;
+	std::cout << std::endl << "Please enter a letter to select a menu option: ";
+	std::cin >> menuInput;
+	menuInput = tolower(menuInput);
 
+	//Menu handling
+	while (menuInput != 'q')
+	{
+		switch (menuInput)
+		{
+		case 'a':
+			break;
+		case 'b':
+			break;
+		case 'c':
+			break;
+		case 'd':
+			break;
+		case 'e':
+			break;
+		case 'f':
+			break;
+		default:
+			std::cout << "That was an invalid input. ";
+			break;
+		}
+
+
+		std::cout << std::endl << std::endl << "Menu: " << std::endl;
+		std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
+		std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
+		std::cout << "  [c] Add Node" << std::endl;
+		std::cout << "  [d] Search by name" << std::endl;
+		std::cout << "  [e] Search by birth date" << std::endl;
+		std::cout << "  [f] Remove Node" << std::endl;
+		std::cout << "  [q] Quit" << std::endl;
+		std::cout << std::endl << "Please enter a letter to select a menu option: ";
+		std::cin >> menuInput;
+		menuInput = tolower(menuInput);
+	}
+
+	////Save name tree to file
+	//std::cin.ignore(10, '\n');
+	//std::cout << "Where would you like to save the name tree: ";
+	//std::getline(std::cin, nameOutputFile);
+	//nameOutput.open(nameOutputFile);
+
+	////Save bday tree to file
+	//std::cout << "Where would you like to save the birthday tree: ";
+	//std::getline(std::cin, bdayOutputFile);
+	//bdayOutput.open(bdayOutputFile);
+
+	//nameBst->printBreadthFirst(nameOutput, nameBst->getRoot());
+	//bdayBst->printDepthFirst(bdayOutput, bdayBst->getRoot());
+
+	////Close output files
+	//bdayOutput.close();
+	//nameOutput.close();
+
+	std::cout << std::endl << "Thanks for using this program. Goodbye!" << std::endl;
 
 	inputFile.close(); //Close file now that we are done with it
 	system("pause");
