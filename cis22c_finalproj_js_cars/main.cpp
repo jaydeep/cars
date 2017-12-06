@@ -14,11 +14,16 @@
 #include "car.h"
 #include <unordered_map>
 
-//helper functions
-void addNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*);
-void removeNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*);
-void searchByName(BinarySearchTree<std::string>*);
-void searchByBirthday(BinarySearchTree<std::string>*);
+//helper functions for menu 
+void addRecord();
+void removeRecord();
+void searchByVIN();
+void searchByYear();
+void searchByMake();
+void listDataInHashTableSeq();
+void listDataInSortedKeySeq();
+void printIndentedTree();
+void printEfficiency();
 
 //main
 int main() {
@@ -87,22 +92,31 @@ int main() {
 		switch (menuInput)
 		{
 		case 'a':
+			addRecord();
 			break;
 		case 'b':
+			removeRecord();
 			break;
 		case 'c':
+			searchByVIN();
 			break;
 		case 'd':
+			searchByYear();
 			break;
 		case 'e':
+			searchByMake();
 			break;
 		case 'f':
+			listDataInHashTableSeq();
 			break;
 		case 'g':
+			listDataInSortedKeySeq();
 			break;
 		case 'h':
+			printIndentedTree();
 			break;
 		case 'i':
+			printEfficiency();
 			break;
 		default:
 			std::cout << "That was an invalid input. ";
@@ -150,3 +164,47 @@ int main() {
 	return 0;
 }
 
+void addRecord()
+{
+
+}
+
+void removeRecord()
+{
+
+}
+
+void searchByVIN()
+{
+
+}
+
+void searchByYear()
+{
+
+}
+
+void searchByMake()
+{
+
+}
+
+void listDataInHashTableSeq()
+{
+
+}
+
+void listDataInSortedKeySeq()
+{
+
+}
+
+void printIndentedTree()
+{
+
+}
+
+void printEfficiency()
+{
+
+}
