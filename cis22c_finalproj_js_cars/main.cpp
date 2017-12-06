@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  cis22c_final_project_js
+//  cis22c_finalproj_js_cars
 //
 //  Created by Jaydeep Singh on 11/20/17.
 //  Copyright © 2017 DeAnza. All rights reserved.
@@ -10,6 +10,7 @@
 #include <fstream>
 #include <string>
 #include "binarysearchtree.h"
+#include "headnode.h"
 #include "car.h"
 #include <unordered_map>
 
@@ -18,48 +19,6 @@ void addNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*);
 void removeNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*);
 void searchByName(BinarySearchTree<std::string>*);
 void searchByBirthday(BinarySearchTree<std::string>*);
-
-
-class headNode
-{
-private:
-	int count;
-	int arySize;
-	std::unordered_map<int, MyCar*> *pHash;
-	BinarySearchTree<std::string> *pTree;
-
-public:
-	headNode(int, int, std::unordered_map<int, MyCar*>, BinarySearchTree<std::string>*);
-	headNode(int, int, std::unordered_map<int, MyCar*>);
-	headNode(int, int);
-//	int setCount(int);
-//	int setArySize(int);
-};
-
-headNode::headNode(int c, int s) {
-	// , std::unordered_map<int, MyCar*>* p, BinarySearchTree<std::string>* t) {
-	count = c;
-	arySize = s;
-	//pHash = p;
-	//pTree = t;
-
-}
-headNode::headNode(int c, int s, std::unordered_map<int, MyCar*> p) {
-	// , std::unordered_map<int, MyCar*>* p, BinarySearchTree<std::string>* t) {
-	count = c;
-	arySize = s;
-	//pHash = p;
-	//pTree = t;
-
-}
-headNode::headNode(int c, int s, std::unordered_map<int, MyCar*> p, BinarySearchTree<std::string>*) {
-	// , std::unordered_map<int, MyCar*>* p, BinarySearchTree<std::string>* t) {
-	count = c;
-	arySize = s;
-	//pHash = p;
-	//pTree = t;
-
-}
 
 int main() {
 	std::string filePath, tempInput, tempInput1, nameOutputFile, bdayOutputFile;
