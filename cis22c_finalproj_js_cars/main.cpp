@@ -67,12 +67,15 @@ int main() {
 
 	//Menu
 	std::cout << std::endl << std::endl << "Menu: " << std::endl;
-	std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
-	std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
-	std::cout << "  [c] Add Node" << std::endl;
-	std::cout << "  [d] Search by name" << std::endl;
-	std::cout << "  [e] Search by birth date" << std::endl;
-	std::cout << "  [f] Remove Node" << std::endl;
+	std::cout << "  [a] Add new data" << std::endl;
+	std::cout << "  [b] Delete data " << std::endl;
+	std::cout << "  [c] Search by primary key/VIN" << std::endl;
+	std::cout << "  [d] Search by year" << std::endl;
+	std::cout << "  [e] Search by make" << std::endl;
+	std::cout << "  [f] List data in hash table sequence" << std::endl;
+	std::cout << "  [g] List data in sorted key sequence" << std::endl;
+	std::cout << "  [h] Print Indented Tree" << std::endl;
+	std::cout << "  [i] Efficiency";
 	std::cout << "  [q] Quit" << std::endl;
 	std::cout << std::endl << "Please enter a letter to select a menu option: ";
 	std::cin >> menuInput;
@@ -95,19 +98,27 @@ int main() {
 			break;
 		case 'f':
 			break;
+		case 'g':
+			break;
+		case 'h':
+			break;
+		case 'i':
+			break;
 		default:
 			std::cout << "That was an invalid input. ";
 			break;
 		}
 
-
 		std::cout << std::endl << std::endl << "Menu: " << std::endl;
-		std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
-		std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
-		std::cout << "  [c] Add Node" << std::endl;
-		std::cout << "  [d] Search by name" << std::endl;
-		std::cout << "  [e] Search by birth date" << std::endl;
-		std::cout << "  [f] Remove Node" << std::endl;
+		std::cout << "  [a] Add new data" << std::endl;
+		std::cout << "  [b] Delete data " << std::endl;
+		std::cout << "  [c] Search by primary key/VIN" << std::endl;
+		std::cout << "  [d] Search by year [team choice]" << std::endl;
+		std::cout << "  [e] Search by make [team choice]" << std::endl;
+		std::cout << "  [f] List data in hash table sequence" << std::endl;
+		std::cout << "  [g] List data in sorted key sequence" << std::endl;
+		std::cout << "  [h] Print Indented Tree" << std::endl;
+		std::cout << "  [i] Efficiency";
 		std::cout << "  [q] Quit" << std::endl;
 		std::cout << std::endl << "Please enter a letter to select a menu option: ";
 		std::cin >> menuInput;
