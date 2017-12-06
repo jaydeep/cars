@@ -20,6 +20,7 @@ void removeNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*);
 void searchByName(BinarySearchTree<std::string>*);
 void searchByBirthday(BinarySearchTree<std::string>*);
 
+//main
 int main() {
 	std::string filePath, tempInput, tempInput1, nameOutputFile, bdayOutputFile;
 	std::ifstream inputFile;
@@ -28,22 +29,24 @@ int main() {
 	std::unordered_map<int, MyCar*> hashtable;
 	char menuInput;
 
-	//create the two trees
+	//create the tree
 	BinarySearchTree<std::string>* carBst = new BinarySearchTree<std::string>();
 
-	std::cout << "Welcome the BMW of Denver Downtown!" << std::endl;
-	std::cout << "Please enter the full file path that contains the 25+ records of cars." << std::endl;
-	std::cout << "One record per line and each line would have VIN, make, model and year of the car." << std::endl;
+	std::cout << "Welcome to the BMW of Denver Downtown!" << std::endl;
+	std::cout << "Please enter the full file path that contains the car inventory." << std::endl;
+	std::cout << "(File should have one record per line and each line should have" << std::endl;
+	std::cout << "VIN, make, model and year of the car.) : " << std::endl;
 
-	//std::getline(std::cin, filePath);
-	filePath = "car.txt";
+	std::getline(std::cin, filePath);
+
 	inputFile.open(filePath);
 
 	while (!inputFile) //file input validation
 	{
 		std::cout << "Sorry, I could not find that file." << std::endl;
 		std::cout << "Please enter the full file path of the data " << std::endl;
-		std::cout << "you wish to save: ";
+		std::cout << "you wish to load: ";
+
 		std::getline(std::cin, filePath);
 		inputFile.open(filePath);
 	}
@@ -51,56 +54,20 @@ int main() {
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
 
 	//get data from file and add them to tree
-	std::string VIN;
-	std::string make;
-	std::string model;
-	std::string year;
-	std::size_t found;
+	std::string tempVIN;
+	std::string tempMake;
+	std::string tempModel;
+	std::string tempYear;
 	int counter = 0;
-	MyCar *mycar1;
-	while (std::getline(inputFile, tempInput))
+
+	MyCar *myCar1;
+	while (inputFile >> tempVIN >> tempMake >> tempModel >> tempYear) //read records line by line
 	{
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			VIN = tempInput.substr(0, found);
-			tempInput = tempInput.substr(found + 1);
-			std::cout << "VIN= " << VIN << '\n';
-			std::cout << "space found at= " << found << '\n';
-			std::cout << "rest of the string " << tempInput << '\n';
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			make = tempInput.substr(0, found);
-			tempInput = tempInput.substr(found + 1);
-			std::cout << "make= " << make << '\n';
-			std::cout << "space found at= " << found << '\n';
-			std::cout << "rest of the string " << tempInput << '\n';
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			model = tempInput.substr(0, found);
-			year = tempInput.substr(found + 1);
-			std::cout << "model= " << model << '\n';
-			std::cout << "year= " << year << '\n';
-			std::cout << "space found at= " << found << '\n';
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-		mycar1 = new MyCar(VIN, make, model, year);
-		counter = counter + 1;
-		hashtable[counter] = mycar1;
-		std::cout << mycar1->printCar() << '\n';
+		myCar1 = new MyCar(tempVIN, tempMake, tempModel, tempYear);
+		counter += 1;
+		hashtable[counter] = myCar1;
+		std::cout << myCar1->printCar() << std::endl;
 	}
-	headNode *myHeadNode = new headNode(25, 25);
-	headNode *myHeadNode1 = new headNode(25, 25, hashtable);
-	headNode *myHeadNode2 = new headNode(25, 25, hashtable, carBst);
 
 	inputFile.close(); //Close file now that we are done with it
 	system("pause");
