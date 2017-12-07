@@ -99,9 +99,13 @@ int main() {
 	p_hash.printAll();
 	p_hash.efficiency_stats();
 
-	MyCar* tempCar = new MyCar("000000000", "BMW", "M3", "2008");
+	//testing addRecord()
+    MyCar* tempCar = new MyCar("000000000", "BMW", "M3", "2008");
 	head.addRecord(tempCar);
+	p_hash.printAll();
 
+	//testing search
+	head.search("000000000");
 	p_hash.printAll();
 
 	//headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);

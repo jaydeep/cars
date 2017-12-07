@@ -14,7 +14,7 @@ private:
 public:
 	headNode(int, int, MyHash, BinarySearchTree<std::string>*);
 	void addRecord(MyCar*);
-	void removeRecord();
+	void removeRecord(MyCar*);
 	void search(std::string);
 	void printTree();
 	void printTable();
@@ -35,14 +35,15 @@ void headNode::addRecord(MyCar* carToAdd)
 	pTree->add(pTree->getRoot(), carToAdd->getVIN());
 }
 
-void headNode::removeRecord()
+void headNode::removeRecord(MyCar* carToRemove)
 {
-
+	pHash.remove(carToRemove->getVIN());
+	//pTree->remove(pTree->getRoot(), carToRemove->getVIN()); //TODO
 }
 
 void headNode::search(std::string searchKey)
 {
-
+	std::cout << pTree->search(pTree->getRoot(), searchKey);
 }
 
 void headNode::printTree()
