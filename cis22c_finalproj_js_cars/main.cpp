@@ -5,13 +5,12 @@
 //  Created by Jaydeep Singh on 11/20/17.
 //  Copyright © 2017 DeAnza. All rights reserved.
 //
-#include "binarysearchtree.h"
-#include "hash.h"
+#include "headnode.h"
 
 int main() {
-	std::string filePath, tempInput;
+	std::string filePath, tempInput, tempVIN, tempMake, tempModel, tempYear;
 	std::ifstream inputFile;
-	//char menuInput;
+	char menuInput;
 
 	std::cout << "Welcome to the BMW of Denver Downtown!" << std::endl;
 	std::cout << "Please enter the full file path that contains the 25+ records of cars." << std::endl;
@@ -30,63 +29,32 @@ int main() {
 		inputFile.open(filePath);
 	}
 
-
+	//count number of records in file
 	int size = 0;
 	while (std::getline(inputFile, tempInput))
 	{
 		size = size + 1;
 	}
 
+	//close file now that we are done counting the number of records
 	inputFile.close();
 
+	//declare a hashtable with size 3x of numRecords
 	MyHash p_hash = MyHash(3*size);
 
+	//open file to read data into hashtable and bst
 	inputFile.open(filePath);
 
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
 
-	//get data from file and add them to tree
-	std::string VIN;
-	std::string make;
-	std::string model;
-	std::string year;
-	std::size_t found;
-	int counter = 0;
-	MyCar *mycar1;
-	while (std::getline(inputFile, tempInput))
+	MyCar *tempCar;
+
+	while (inputFile >> tempVIN >> tempMake >> tempModel >> tempYear)
 	{
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			VIN = tempInput.substr(0, found);
-			tempInput = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-
-		found = tempInput.find(" ");
-
-		if (found != std::string::npos) {
-			make = tempInput.substr(0, found);
-			tempInput = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			model = tempInput.substr(0, found);
-			year = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-
-		mycar1 = new MyCar(VIN, make, model, year);
-		p_hash.add(mycar1);
-		std::cout << mycar1->printCar() << '\n';
+		tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
+		p_hash.add(tempCar);
 	}
+
 	//Close file now that we are done with it
 	inputFile.close();
 

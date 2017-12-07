@@ -32,5 +32,8 @@
     <ClInclude Include="hash.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="headnode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
