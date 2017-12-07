@@ -19,7 +19,6 @@ private:
 
 public:
 	MyCar(std::string, std::string, std::string, std::string);
-
 	~MyCar();
 	std::string getVIN();
 	std::string getMake();
@@ -70,7 +69,7 @@ std::string MyCar::printCar()
 }
 
 MyCar::~MyCar(){
-	delete this;
+	//delete this;
 }
 #endif /* car_h */
 

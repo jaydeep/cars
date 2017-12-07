@@ -56,7 +56,7 @@ int main() {
 	std::cout << "One record per line and each line would have VIN, make, model and year of the car." << std::endl;
 
 	//std::getline(std::cin, filePath);
-	filePath = "car2.txt";
+	filePath = "car.txt";
 	inputFile.open(filePath);
 
 	while (!inputFile) //file input validation
@@ -73,7 +73,7 @@ int main() {
 		size = size + 1;
 	}
 	inputFile.close();
-	MyHash p_hash = MyHash(size);
+	MyHash p_hash = MyHash(3*size);
 	inputFile.open(filePath); 
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
 
@@ -127,13 +127,17 @@ int main() {
 		//hashtable[ptr_hash(temp_VIN)] = mycar1;
 		std::cout << mycar1->printCar() << '\n';
 	}
-    std::cout << "Printing ALL\n";
-	//p_hash.printAll();
-	p_hash.print("001234567890");
+	//Close file now that we are done with it
+	inputFile.close();
+	std::cout << "Printing ALL\n";
+	p_hash.find("001234567890");
+	p_hash.printAll();
+	p_hash.deleteEven();
+	p_hash.printAll();
+	p_hash.efficiency_stats();
 	//headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
 	system("pause");
 	return 0;
-	inputFile.close(); //Close file now that we are done with it
 
 		/*
 		//Menu
