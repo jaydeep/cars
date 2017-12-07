@@ -20,6 +20,9 @@ private:
 	MyCar** table;
 	MyCar* NULL_record;
 	int hashSize;
+	int num_collisions; // for add and remove
+	int num_operations; // for add and remove
+	//int total_operations_performed_on_sort;
 	
 public:
 	MyHash();
@@ -28,9 +31,11 @@ public:
 	void add(MyCar*);
 	bool remove(std::string);
 	int find_empty_slot(unsigned);
-	void print(std::string);
+	void find(std::string);
 	void printAll();
+	void deleteEven();
 	unsigned hash_str(const char* s);
+	void efficiency_stats();
 
 };
 
@@ -41,6 +46,8 @@ MyHash::MyHash()
 	NULL_record = new MyCar("X", "Y", "Z", "0000");
 	hashSize = 1;
 	table[0] = NULL;
+	num_collisions = 0; 
+	num_operations = 0;
 }
 //Default Constructor
 MyHash::MyHash(int hash_size)
@@ -48,6 +55,8 @@ MyHash::MyHash(int hash_size)
 	table = new MyCar*[hash_size];
 	NULL_record = new MyCar("X", "Y", "Z", "0000");
 	hashSize = hash_size;
+	num_collisions = 0;
+	num_operations = 0;
 	int i = 0;
 	while (i < hashSize) {
 		//std::cout << i << "\n";
@@ -58,8 +67,9 @@ MyHash::MyHash(int hash_size)
 
 void MyHash::add(MyCar* value)
 {
+	num_operations++;
 	std::string  vin = value->getVIN();
-	std::hash<char*> ptr_hash;
+	//std::hash<char*> ptr_hash;
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
 	unsigned hash_value = hash_str(vin_ptr);
@@ -88,6 +98,7 @@ int MyHash::find_empty_slot(unsigned hash1) {
 			else {
 				next_slot = (hash1 + attempt * attempt) % hashSize;
 				attempt++;
+				num_collisions++;
 			}
 		}
 	}
@@ -96,7 +107,7 @@ int MyHash::find_empty_slot(unsigned hash1) {
 
 bool MyHash::remove(std::string vin)
 {
-	std::hash<char*> ptr_hash;
+	num_operations++;
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
 	unsigned hash_value = hash_str(vin_ptr);
@@ -115,6 +126,7 @@ bool MyHash::remove(std::string vin)
 				// We hit a NULL Record, keep searching
 				next_slot = (hash_value + attempt * attempt) % hashSize;
 				attempt++;
+				num_collisions++;
 			}
 			else {
 				tempvin = table[next_slot]->getVIN();
@@ -128,6 +140,7 @@ bool MyHash::remove(std::string vin)
 					// Keep searching
 					next_slot = (hash_value + attempt * attempt) % hashSize;
 					attempt++;
+					num_collisions++;
 				}
 			}
 		}
@@ -135,9 +148,9 @@ bool MyHash::remove(std::string vin)
 	return true;
 }
 
-void MyHash::print(std::string vin)
+void MyHash::find(std::string vin)
 {
-	std::hash<char*> ptr_hash;
+	//std::hash<char*> ptr_hash;
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
 	int hash_value = hash_str(vin_ptr) % hashSize;
@@ -182,13 +195,44 @@ void MyHash::printAll()
 	while (i < hashSize)
 	{
 		//std::cout << i << "\n";
-		if (table[i] != NULL && table[i] != NULL_record)
-		{
-			table[i]->printCar();
+		if (table[i] == NULL) {
+			std::cout << i << " is empty slot\n";
 		}
-
+		else if (table[i] == NULL_record){
+		std::cout << i << " is deleted record\n";
+		}
+		else {
+			std::cout << "slot " << i << ": " << table[i]->printCar() << "\n";
+		}
 		i++;
 	}
+}
+
+void MyHash::deleteEven()
+{
+	// We use libary function std::hash to find integer hash value and use modulo operator to restrict to size of table
+	int i = 0;
+	while (i < hashSize)
+	{
+		//std::cout << i << "\n";
+		if (table[i] == NULL) {
+			std::cout << i << " is empty slot\n";
+		}
+		else if (table[i] == NULL_record) {
+			std::cout << i << " is deleted record\n";
+		}
+		else {
+			remove(table[i]->getVIN());
+		}
+		i = i +2;
+	}
+}
+
+void MyHash::efficiency_stats() {
+	std::cout << "Number of Operations: " << num_operations << "\n";
+	std::cout << "Number of Collisions: " << num_collisions << "\n";
+	std::cout << "Average Number of Collisions as a %: " << 100*num_collisions/num_operations << "\n";
+
 }
 unsigned MyHash::hash_str(const char* s)
 {
