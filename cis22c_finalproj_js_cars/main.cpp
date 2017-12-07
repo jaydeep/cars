@@ -49,48 +49,18 @@ int main() {
 	std::string make;
 	std::string model;
 	std::string year;
-	std::size_t found;
-	int counter = 0;
+
+	BinarySearchTree<std::string>* carBst = new BinarySearchTree<std::string>();
+	headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
 	MyCar *mycar1;
-	while (std::getline(inputFile, tempInput))
+
+	while (inputFile >> VIN >> make >> model >> year)
 	{
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			VIN = tempInput.substr(0, found);
-			tempInput = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-
-		found = tempInput.find(" ");
-
-		if (found != std::string::npos) {
-			make = tempInput.substr(0, found);
-			tempInput = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-
-		found = tempInput.find(" ");
-		if (found != std::string::npos) {
-			model = tempInput.substr(0, found);
-			year = tempInput.substr(found + 1);
-		}
-		else {
-			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
-		}
-
 		mycar1 = new MyCar(VIN, make, model, year);
-		p_hash.add(mycar1);
-		std::cout << mycar1->printCar() << '\n';
+		myHeadNode->addRecord(mycar1);
 	}
 	//Close file now that we are done with it
 	inputFile.close();
-
-	BinarySearchTree<std::string>* p_tree = new BinarySearchTree<std::string>();
-	headNode head = headNode(25, 25, p_hash, p_tree);
 
 	std::cout << "Printing ALL\n";
 	p_hash.find("001234567890");
@@ -99,17 +69,24 @@ int main() {
 	p_hash.printAll();
 	p_hash.efficiency_stats();
 
+
+
 	//testing addRecord()
-    MyCar* tempCar = new MyCar("000000000", "BMW", "M3", "2008");
-	head.addRecord(tempCar);
-	p_hash.printAll();
+	MyCar* tempCar = new MyCar("000000000", "BMW", "M3", "2008");
+	myHeadNode->addRecord(tempCar);
+	myHeadNode->printTable();
+	myHeadNode->printTree();
 
 	//testing search
 	std::cout << "Searching......";
-	head.search("000000000");
-	head.printTable();
+	myHeadNode->search("000000000");
+	p_hash.find("000000000");
 
-	//headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
+	//testing remove
+	myHeadNode->removeRecord(tempCar);
+
+	myHeadNode->printTable();
+
 	system("pause");
 	return 0;
 }

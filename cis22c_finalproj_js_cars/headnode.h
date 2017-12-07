@@ -38,7 +38,8 @@ void headNode::addRecord(MyCar* carToAdd)
 void headNode::removeRecord(MyCar* carToRemove)
 {
 	pHash.remove(carToRemove->getVIN());
-	//pTree->remove(pTree->getRoot(), carToRemove->getVIN()); //TODO
+	//
+	pTree->remove(pTree->getRoot(), carToRemove->getVIN()); //TODO
 }
 
 void headNode::search(std::string searchKey)
@@ -48,7 +49,8 @@ void headNode::search(std::string searchKey)
 
 void headNode::printTree()
 {
-
+	std::cout << "printing tree: " << std::endl << std::endl;
+	pTree->printBreadthFirstStdOut(pTree->getRoot());
 }
 
 void headNode::printTable()
