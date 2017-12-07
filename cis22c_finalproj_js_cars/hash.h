@@ -231,7 +231,12 @@ void MyHash::deleteEven()
 void MyHash::efficiency_stats() {
 	std::cout << "Number of Operations: " << num_operations << "\n";
 	std::cout << "Number of Collisions: " << num_collisions << "\n";
-	std::cout << "Average Number of Collisions as a %: " << 100*num_collisions/num_operations << "\n";
+	if (num_operations != 0) {
+	   std::cout << "Average Number of Collisions as a %: " << 100 * num_collisions / num_operations << "\n";
+    }
+	else {
+		std::cout << "Average Number of Collisions can't be calculated ad num_operations are zero %:\n";
+	}
 
 }
 unsigned MyHash::hash_str(const char* s)

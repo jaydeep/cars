@@ -39,7 +39,8 @@ int main() {
 	inputFile.close();
 
 	MyHash p_hash = MyHash(3*size);
-
+	BinarySearchTree<std::string>* p_tree = new BinarySearchTree<std::string>();
+	headNode head = headNode(25, 25, p_hash, p_tree);
 	inputFile.open(filePath);
 
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
@@ -83,33 +84,41 @@ int main() {
 		}
 
 		mycar1 = new MyCar(VIN, make, model, year);
-		p_hash.add(mycar1);
-		std::cout << mycar1->printCar() << '\n';
+		//head.addRecord(mycar1);
+		//p_hash.add(mycar1);
+		//std::cout << mycar1->printCar() << '\n';
 	}
 	//Close file now that we are done with it
 	inputFile.close();
 
-	BinarySearchTree<std::string>* p_tree = new BinarySearchTree<std::string>();
-	headNode head = headNode(25, 25, p_hash, p_tree);
+	
 
-	std::cout << "Printing ALL\n";
-	p_hash.find("001234567890");
-	p_hash.printAll();
-	p_hash.deleteEven();
-	p_hash.printAll();
-	p_hash.efficiency_stats();
+	//std::cout << "Printing ALL\n";
+	//p_hash.find("001234567890");
+	//p_hash.printAll();
+	//p_hash.deleteEven();
+	//p_hash.printAll();
+	
 
 	//testing addRecord()
     MyCar* tempCar = new MyCar("000000000", "BMW", "M3", "2008");
+	MyCar* tempCar1 = new MyCar("000000001", "BMW", "Z4M", "2007");
+
 	head.addRecord(tempCar);
-	p_hash.printAll();
+	head.addRecord(tempCar1);
+
+	head.printTable();
+	head.printSortedTable();
+	//p_hash.printAll();
 
 	//testing search
-	std::cout << "Searching......";
-	head.search("000000000");
-	head.printTable();
+	std::cout << "Removing Record......\n";
+	head.removeRecord(tempCar);
+	head.removeRecord(tempCar1);
 
-	//headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
+	head.printTable();
+	head.printSortedTable();
+	head.efficiency_stats();
 	system("pause");
 	return 0;
 }
