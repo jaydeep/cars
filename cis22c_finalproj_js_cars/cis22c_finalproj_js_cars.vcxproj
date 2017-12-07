@@ -117,7 +117,6 @@
     <ClInclude Include="binarysearchtree.h" />
     <ClInclude Include="car.h" />
     <ClInclude Include="hash.h" />
-    <ClInclude Include="headnode.h" />
     <ClInclude Include="node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
