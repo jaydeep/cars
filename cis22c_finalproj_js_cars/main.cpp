@@ -105,8 +105,9 @@ int main() {
 	p_hash.printAll();
 
 	//testing search
+	std::cout << "Searching......";
 	head.search("000000000");
-	p_hash.printAll();
+	head.printTable();
 
 	//headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
 	system("pause");

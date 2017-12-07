@@ -43,7 +43,7 @@ void headNode::removeRecord(MyCar* carToRemove)
 
 void headNode::search(std::string searchKey)
 {
-	std::cout << pTree->search(pTree->getRoot(), searchKey);
+	std::cout << pTree->search(pTree->getRoot(), searchKey); //TODO
 }
 
 void headNode::printTree()
@@ -53,7 +53,8 @@ void headNode::printTree()
 
 void headNode::printTable()
 {
-
+	std::cout << "Printing the entire hash table: " << std::endl << std::endl;
+	pHash.printAll();
 }
 
 void headNode::printSortedTable()
