@@ -9,6 +9,7 @@
 
 int main() {
 	std::string filePath, tempInput;
+	int size = 0;
 	std::ifstream inputFile;
 	//char menuInput;
 
@@ -29,8 +30,6 @@ int main() {
 		inputFile.open(filePath);
 	}
 
-
-	int size = 0;
 	while (std::getline(inputFile, tempInput))
 	{
 		size = size + 1;
@@ -39,7 +38,8 @@ int main() {
 	inputFile.close();
 
 	MyHash p_hash = MyHash(3*size);
-
+	BinarySearchTree<std::string>* p_tree = new BinarySearchTree<std::string>();
+	headNode head = headNode(25, 25, p_hash, p_tree);
 	inputFile.open(filePath);
 
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
@@ -49,43 +49,45 @@ int main() {
 	std::string make;
 	std::string model;
 	std::string year;
-
-	BinarySearchTree<std::string>* carBst = new BinarySearchTree<std::string>();
-	headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
+	std::size_t found;
+	//int counter = 0;
 	MyCar *mycar1;
-
-	while (inputFile >> VIN >> make >> model >> year)
+	while (std::getline(inputFile, tempInput))
 	{
+		found = tempInput.find(" ");
+		if (found != std::string::npos) {
+			VIN = tempInput.substr(0, found);
+			tempInput = tempInput.substr(found + 1);
+		}
+		else {
+			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
+		}
+
+		found = tempInput.find(" ");
+
+		if (found != std::string::npos) {
+			make = tempInput.substr(0, found);
+			tempInput = tempInput.substr(found + 1);
+		}
+		else {
+			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
+		}
+
+		found = tempInput.find(" ");
+		if (found != std::string::npos) {
+			model = tempInput.substr(0, found);
+			year = tempInput.substr(found + 1);
+		}
+		else {
+			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
+		}
+
 		mycar1 = new MyCar(VIN, make, model, year);
-		myHeadNode->addRecord(mycar1);
+		head.addRecord(mycar1);
 	}
 	//Close file now that we are done with it
 	inputFile.close();
 
-	std::cout << "Printing ALL\n";
-	p_hash.find("001234567890");
-	p_hash.printAll();
-	p_hash.deleteEven();
-	p_hash.printAll();
-	p_hash.efficiency_stats();
-
-
-
-	//testing addRecord()
-	MyCar* tempCar = new MyCar("000000000", "BMW", "M3", "2008");
-	myHeadNode->addRecord(tempCar);
-	myHeadNode->printTable();
-	myHeadNode->printTree();
-
-	//testing search
-	std::cout << "Searching......";
-	myHeadNode->search("000000000");
-	p_hash.find("000000000");
-
-	//testing remove
-	myHeadNode->removeRecord(tempCar);
-
-	myHeadNode->printTable();
 
 	system("pause");
 	return 0;

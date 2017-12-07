@@ -19,6 +19,7 @@ public:
 	void printTree();
 	void printTable();
 	void printSortedTable();
+	void headNode::efficiency_stats();
 };
 
 headNode::headNode(int c, int s, MyHash p, BinarySearchTree<std::string>* t)
@@ -37,9 +38,11 @@ void headNode::addRecord(MyCar* carToAdd)
 
 void headNode::removeRecord(MyCar* carToRemove)
 {
+	// Order of removing is important. Hash remove must be done last as it deletes the memory associated with the record
+	MyNode<std::string>* save;
+	save = pTree->remove(pTree->getRoot(), carToRemove->getVIN()); 
+	pTree->setRoot(save);
 	pHash.remove(carToRemove->getVIN());
-	//
-	pTree->remove(pTree->getRoot(), carToRemove->getVIN()); //TODO
 }
 
 void headNode::search(std::string searchKey)
@@ -49,8 +52,7 @@ void headNode::search(std::string searchKey)
 
 void headNode::printTree()
 {
-	std::cout << "printing tree: " << std::endl << std::endl;
-	pTree->printBreadthFirstStdOut(pTree->getRoot());
+
 }
 
 void headNode::printTable()
@@ -58,9 +60,12 @@ void headNode::printTable()
 	std::cout << "Printing the entire hash table: " << std::endl << std::endl;
 	pHash.printAll();
 }
-
+void headNode::efficiency_stats() {
+	pHash.efficiency_stats();
+}
 void headNode::printSortedTable()
 {
-
+	std::cout << "Printing Sorted Table\n";
+	pTree->printDepthFirstStdOut(pTree->getRoot());
 }
 #endif
