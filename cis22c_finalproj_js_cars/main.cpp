@@ -8,10 +8,12 @@
 #include "headnode.h"
 
 int main() {
-	std::string filePath, tempInput;
+	std::string filePath, tempInput, VIN, make, model, year;
+	std::size_t found;
+	MyCar *mycar1;
 	int size = 0;
 	std::ifstream inputFile;
-	//char menuInput;
+	char menuInput;
 
 	std::cout << "Welcome to the BMW of Denver Downtown!" << std::endl;
 	std::cout << "Please enter the full file path that contains the 25+ records of cars." << std::endl;
@@ -30,6 +32,7 @@ int main() {
 		inputFile.open(filePath);
 	}
 
+	//read file to get size of hashtable
 	while (std::getline(inputFile, tempInput))
 	{
 		size = size + 1;
@@ -37,21 +40,14 @@ int main() {
 
 	inputFile.close();
 
-	MyHash p_hash = MyHash(3*size);
+	MyHash p_hash = MyHash(3*size); //use 3*size for better efficiency
 	BinarySearchTree<std::string>* p_tree = new BinarySearchTree<std::string>();
 	headNode head = headNode(25, 25, p_hash, p_tree);
 	inputFile.open(filePath);
 
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
 
-	//get data from file and add them to tree
-	std::string VIN;
-	std::string make;
-	std::string model;
-	std::string year;
-	std::size_t found;
-	//int counter = 0;
-	MyCar *mycar1;
+	//get data from file and add them to tree/hash
 	while (std::getline(inputFile, tempInput))
 	{
 		found = tempInput.find(" ");
@@ -87,6 +83,9 @@ int main() {
 	}
 	//Close file now that we are done with it
 	inputFile.close();
+
+	//Menu
+
 
 
 	system("pause");
