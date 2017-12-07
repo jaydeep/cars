@@ -56,7 +56,7 @@ int main() {
 	std::cout << "One record per line and each line would have VIN, make, model and year of the car." << std::endl;
 
 	//std::getline(std::cin, filePath);
-	filePath = "car5.txt";
+	filePath = "car2.txt";
 	inputFile.open(filePath);
 
 	while (!inputFile) //file input validation
@@ -92,9 +92,9 @@ int main() {
 		if (found != std::string::npos) {
 			VIN = tempInput.substr(0, found);
 			tempInput = tempInput.substr(found + 1);
-			std::cout << "VIN= " << VIN << '\n';
-			std::cout << "space found at= " << found << '\n';
-			std::cout << "rest of the string " << tempInput << '\n';
+			//std::cout << "VIN= " << VIN << '\n';
+			//std::cout << "space found at= " << found << '\n';
+			//std::cout << "rest of the string " << tempInput << '\n';
 		}
 		else {
 			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
@@ -103,9 +103,9 @@ int main() {
 		if (found != std::string::npos) {
 			make = tempInput.substr(0, found);
 			tempInput = tempInput.substr(found + 1);
-			std::cout << "make= " << make << '\n';
-			std::cout << "space found at= " << found << '\n';
-			std::cout << "rest of the string " << tempInput << '\n';
+			//std::cout << "make= " << make << '\n';
+			//std::cout << "space found at= " << found << '\n';
+			//std::cout << "rest of the string " << tempInput << '\n';
 		}
 		else {
 			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
@@ -114,9 +114,9 @@ int main() {
 		if (found != std::string::npos) {
 			model = tempInput.substr(0, found);
 			year = tempInput.substr(found + 1);
-			std::cout << "model= " << model << '\n';
-			std::cout << "year= " << year << '\n';
-			std::cout << "space found at= " << found << '\n';
+			//std::cout << "model= " << model << '\n';
+			//std::cout << "year= " << year << '\n';
+			//std::cout << "space found at= " << found << '\n';
 		}
 		else {
 			std::cout << "Malformed record would be ignored:" << tempInput << "\n";
@@ -127,8 +127,10 @@ int main() {
 		//hashtable[ptr_hash(temp_VIN)] = mycar1;
 		std::cout << mycar1->printCar() << '\n';
 	}
-	p_hash.printAll();
-	headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
+    std::cout << "Printing ALL\n";
+	//p_hash.printAll();
+	p_hash.print("001234567890");
+	//headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
 	system("pause");
 	return 0;
 	inputFile.close(); //Close file now that we are done with it
