@@ -5,7 +5,8 @@
 //  Created by Jaydeep Singh on 11/20/17.
 //  Copyright © 2017 DeAnza. All rights reserved.
 //
-#include "headnode.h"
+#include "binarysearchtree.h"
+#include "hash.h"
 
 int main() {
 	std::string filePath, tempInput;
