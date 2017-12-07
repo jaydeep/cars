@@ -10,15 +10,15 @@ private:
 	int arySize;
 	MyHash pHash;
 	BinarySearchTree<std::string> *pTree;
+
+public:
+	headNode(int, int, MyHash, BinarySearchTree<std::string>*);
 	void addRecord(MyCar*);
 	void removeRecord();
 	void search(std::string);
 	void printTree();
 	void printTable();
 	void printSortedTable();
-
-public:
-	headNode(int, int, MyHash, BinarySearchTree<std::string>*);
 };
 
 headNode::headNode(int c, int s, MyHash p, BinarySearchTree<std::string>* t)

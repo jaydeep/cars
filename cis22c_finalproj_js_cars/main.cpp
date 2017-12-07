@@ -89,12 +89,21 @@ int main() {
 	//Close file now that we are done with it
 	inputFile.close();
 
+	BinarySearchTree<std::string>* p_tree = new BinarySearchTree<std::string>();
+	headNode head = headNode(25, 25, p_hash, p_tree);
+
 	std::cout << "Printing ALL\n";
 	p_hash.find("001234567890");
 	p_hash.printAll();
 	p_hash.deleteEven();
 	p_hash.printAll();
 	p_hash.efficiency_stats();
+
+	MyCar* tempCar = new MyCar("000000000", "BMW", "M3", "2008");
+	head.addRecord(tempCar);
+
+	p_hash.printAll();
+
 	//headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
 	system("pause");
 	return 0;
