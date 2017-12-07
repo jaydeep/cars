@@ -7,6 +7,9 @@
 //
 #include "headnode.h"
 
+void add(headNode);
+
+
 int main() {
 	std::string filePath, tempInput, VIN, make, model, year;
 	std::size_t found;
@@ -86,12 +89,14 @@ int main() {
 
 	//Menu
 	std::cout << std::endl << std::endl << "Menu: " << std::endl;
-	std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
-	std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
-	std::cout << "  [c] Add Node" << std::endl;
-	std::cout << "  [d] Search by name" << std::endl;
-	std::cout << "  [e] Search by birth date" << std::endl;
-	std::cout << "  [f] Remove Node" << std::endl;
+	std::cout << "  [a] Add record" << std::endl;
+	std::cout << "  [b] Remove record" << std::endl;
+	std::cout << "  [c] Search by VIN" << std::endl;
+	std::cout << "  [d] Print Table" << std::endl;
+	std::cout << "  [e] Print Table (sorted by key value)" << std::endl;
+	std::cout << "  [f] Print Indented Tree" << std::endl;
+	std::cout << "  [g] Print Efficiency of Table" << std::endl;
+	std::cout << "  [h] TODO OPTION" << std::endl;
 	std::cout << "  [q] Quit" << std::endl;
 	std::cout << std::endl << "Please enter a letter to select a menu option: ";
 	std::cin >> menuInput;
@@ -103,23 +108,33 @@ int main() {
 		switch (menuInput)
 		{
 			case 'a':
-				//std::cout << std::endl << "Printing the name tree..." << std::endl;
-				//nameBst->printBreadthFirstStdOut(nameBst->getRoot());
+				//Add Record
+				add(head);
 				break;
 			case 'b':
-				//std::cout << std::endl << "Printing the birthday tree..." << std::endl;
+				//Remove record
 				break;
 			case 'c':
-				//addNode(nameBst, bdayBst);
+				//Search By VIN
 				break;
 			case 'd':
-				//searchByName(nameBst);
+				//Print Table
+				head.printTable();
 				break;
 			case 'e':
-				//searchByBirthday(bdayBst);
+				//Print Sorted Table
+				head.printSortedTable();
 				break;
 			case 'f':
-				//removeNode(nameBst, bdayBst);
+				//Print Indented Tree
+				head.printTree();
+				break;
+			case 'g':
+				//Print Efficiency of Table
+				head.efficiency_stats();
+				break;
+			case 'h':
+				//TODO Option
 				break;
 			default:
 				std::cout << "That was an invalid input. ";
@@ -127,19 +142,42 @@ int main() {
 		}
 
 		std::cout << std::endl << std::endl << "Menu: " << std::endl;
-		std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
-		std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
-		std::cout << "  [c] Add Node" << std::endl;
-		std::cout << "  [d] Search by name" << std::endl;
-		std::cout << "  [e] Search by birth date" << std::endl;
-		std::cout << "  [f] Remove Node" << std::endl;
+		std::cout << "  [a] Add record" << std::endl;
+		std::cout << "  [b] Remove record" << std::endl;
+		std::cout << "  [c] Search by VIN" << std::endl;
+		std::cout << "  [d] Print Table" << std::endl;
+		std::cout << "  [e] Print Table (sorted by key value)" << std::endl;
+		std::cout << "  [f] Print Indented Tree" << std::endl;
+		std::cout << "  [g] Print Efficiency of Table" << std::endl;
+		std::cout << "  [h] TODO OPTION" << std::endl;
 		std::cout << "  [q] Quit" << std::endl;
 		std::cout << std::endl << "Please enter a letter to select a menu option: ";
 		std::cin >> menuInput;
 		menuInput = tolower(menuInput);
 	}
 
+	std::cout << std::endl << std::endl << "Thank you for using this program! We hope to see you again soon!" << std::endl;
 
 	system("pause");
 	return 0;
+}
+
+void add(headNode head)
+{
+	std::string tempVIN, tempMake, tempModel, tempYear;
+
+	std::cout << "Please enter the 10 digit VIN Number: ";
+	std::cin >> tempVIN;
+
+	std::cout << "Please enter the make: ";
+	std::cin >> tempMake;
+
+	std::cout << "Please enter the model";
+	std::cin >> tempModel;
+
+	std::cout << "Please enter the year of the car: ";
+	std::cin >> tempYear;
+
+	MyCar* tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
+	head.addRecord(tempCar);
 }
