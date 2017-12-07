@@ -145,171 +145,171 @@ int main() {
 	return 0;
 	inputFile.close(); //Close file now that we are done with it
 
-					   /*
-					   //Menu
-					   std::cout << std::endl << std::endl << "Menu: " << std::endl;
-					   std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
-					   std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
-					   std::cout << "  [c] Add Node" << std::endl;
-					   std::cout << "  [d] Search by name" << std::endl;
-					   std::cout << "  [e] Search by birth date" << std::endl;
-					   std::cout << "  [f] Remove Node" << std::endl;
-					   std::cout << "  [q] Quit" << std::endl;
-					   std::cout << std::endl << "Please enter a letter to select a menu option: ";
-					   std::cin >> menuInput;
-					   menuInput = tolower(menuInput);
+		/*
+		//Menu
+		std::cout << std::endl << std::endl << "Menu: " << std::endl;
+		std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
+		std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
+		std::cout << "  [c] Add Node" << std::endl;
+		std::cout << "  [d] Search by name" << std::endl;
+		std::cout << "  [e] Search by birth date" << std::endl;
+		std::cout << "  [f] Remove Node" << std::endl;
+		std::cout << "  [q] Quit" << std::endl;
+		std::cout << std::endl << "Please enter a letter to select a menu option: ";
+		std::cin >> menuInput;
+		menuInput = tolower(menuInput);
 
-					   //Menu handling
-					   while (menuInput != 'q')
-					   {
-					   switch (menuInput)
-					   {
-					   case 'a':
-					   std::cout << std::endl << "Printing the name tree..." << std::endl;
-					   nameBst->printBreadthFirstStdOut(nameBst->getRoot());
-					   break;
-					   case 'b':
-					   std::cout << std::endl << "Printing the birthday tree..." << std::endl;
-					   bdayBst->printBreadthFirstStdOut(bdayBst->getRoot());
-					   break;
-					   case 'c':
-					   addNode(nameBst, bdayBst);
-					   break;
-					   case 'd':
-					   searchByName(nameBst);
-					   break;
-					   case 'e':
-					   searchByBirthday(bdayBst);
-					   break;
-					   case 'f':
-					   removeNode(nameBst, bdayBst);
-					   break;
-					   default:
-					   std::cout << "That was an invalid input. ";
-					   break;
-					   }
-
-
-					   std::cout << std::endl << std::endl << "Menu: " << std::endl;
-					   std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
-					   std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
-					   std::cout << "  [c] Add Node" << std::endl;
-					   std::cout << "  [d] Search by name" << std::endl;
-					   std::cout << "  [e] Search by birth date" << std::endl;
-					   std::cout << "  [f] Remove Node" << std::endl;
-					   std::cout << "  [q] Quit" << std::endl;
-					   std::cout << std::endl << "Please enter a letter to select a menu option: ";
-					   std::cin >> menuInput;
-					   menuInput = tolower(menuInput);
-					   }
-
-					   //Save name tree to file
-					   std::cin.ignore(10, '\n');
-					   std::cout << "Where would you like to save the name tree: ";
-					   std::getline(std::cin, nameOutputFile);
-					   nameOutput.open(nameOutputFile);
-
-					   //Save bday tree to file
-					   std::cout << "Where would you like to save the birthday tree: ";
-					   std::getline(std::cin, bdayOutputFile);
-					   bdayOutput.open(bdayOutputFile);
-
-					   nameBst->printBreadthFirst(nameOutput, nameBst->getRoot());
-					   bdayBst->printDepthFirst(bdayOutput, bdayBst->getRoot());
-
-					   //Close output files
-					   bdayOutput.close();
-					   nameOutput.close();
-
-					   std::cout << std::endl << "Thanks for using this program. Goodbye!" << std::endl;
-					   system("pause");
-					   return 0;
-					   }
+		//Menu handling
+		while (menuInput != 'q')
+		{
+		switch (menuInput)
+		{
+		case 'a':
+		std::cout << std::endl << "Printing the name tree..." << std::endl;
+		nameBst->printBreadthFirstStdOut(nameBst->getRoot());
+		break;
+		case 'b':
+		std::cout << std::endl << "Printing the birthday tree..." << std::endl;
+		bdayBst->printBreadthFirstStdOut(bdayBst->getRoot());
+		break;
+		case 'c':
+		addNode(nameBst, bdayBst);
+		break;
+		case 'd':
+		searchByName(nameBst);
+		break;
+		case 'e':
+		searchByBirthday(bdayBst);
+		break;
+		case 'f':
+		removeNode(nameBst, bdayBst);
+		break;
+		default:
+		std::cout << "That was an invalid input. ";
+		break;
+		}
 
 
-					   // *********** addNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*)
-					   //	params: nameBst - pointer to name tree
-					   //			bdayBst - pointer to bday tree
-					   //  helper function to add a node to name and bday tree
-					   void addNode(BinarySearchTree<std::string>* nameBst, BinarySearchTree<std::string>* bdayBst)
-					   {
-					   std::string tempName, tempBirthday;
+		std::cout << std::endl << std::endl << "Menu: " << std::endl;
+		std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
+		std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
+		std::cout << "  [c] Add Node" << std::endl;
+		std::cout << "  [d] Search by name" << std::endl;
+		std::cout << "  [e] Search by birth date" << std::endl;
+		std::cout << "  [f] Remove Node" << std::endl;
+		std::cout << "  [q] Quit" << std::endl;
+		std::cout << std::endl << "Please enter a letter to select a menu option: ";
+		std::cin >> menuInput;
+		menuInput = tolower(menuInput);
+		}
 
-					   std::cin.ignore(10, '\n');
-					   std::cout << "Please enter the name(fname lname): ";
-					   std::getline(std::cin, tempName);
+		//Save name tree to file
+		std::cin.ignore(10, '\n');
+		std::cout << "Where would you like to save the name tree: ";
+		std::getline(std::cin, nameOutputFile);
+		nameOutput.open(nameOutputFile);
 
-					   //Insert Node in Name Tree
-					   nameBst->add(nameBst->getRoot(), tempName);
+		//Save bday tree to file
+		std::cout << "Where would you like to save the birthday tree: ";
+		std::getline(std::cin, bdayOutputFile);
+		bdayOutput.open(bdayOutputFile);
+
+		nameBst->printBreadthFirst(nameOutput, nameBst->getRoot());
+		bdayBst->printDepthFirst(bdayOutput, bdayBst->getRoot());
+
+		//Close output files
+		bdayOutput.close();
+		nameOutput.close();
+
+		std::cout << std::endl << "Thanks for using this program. Goodbye!" << std::endl;
+		system("pause");
+		return 0;
+		}
 
 
-					   std::cout << "Please enter the birthday(YYYY/MM/DD): ";
-					   std::getline(std::cin, tempBirthday);
+		// *********** addNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*)
+		//	params: nameBst - pointer to name tree
+		//			bdayBst - pointer to bday tree
+		//  helper function to add a node to name and bday tree
+		void addNode(BinarySearchTree<std::string>* nameBst, BinarySearchTree<std::string>* bdayBst)
+		{
+		std::string tempName, tempBirthday;
 
-					   //Insert Node in Birthday Tree
-					   bdayBst->add(bdayBst->getRoot(), tempBirthday);
-					   }
+		std::cin.ignore(10, '\n');
+		std::cout << "Please enter the name(fname lname): ";
+		std::getline(std::cin, tempName);
 
-					   // *********** removeNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*)
-					   //	params: nameBst - pointer to name tree
-					   //			bdayBst - pointer to bday tree
-					   //  helper function to remove a node from name and bday tree
-					   void removeNode(BinarySearchTree<std::string>* nameBst, BinarySearchTree<std::string>* bdayBst)
-					   {
-					   std::string nameToRemove, birthdayToRemove;
+		//Insert Node in Name Tree
+		nameBst->add(nameBst->getRoot(), tempName);
 
-					   std::cout << std::endl << "Please enter the first name and last name of the" << std::endl;
-					   std::cout << std::endl << "person you would like to remove (fname lname): ";
-					   std::cin.ignore(10, '\n');
-					   std::getline(std::cin, nameToRemove);
 
-					   std::cout << std::endl << "Please enter the birthday of the" << std::endl;
-					   std::cout << std::endl << "person you would like to remove (YYYY/MM/DD): ";
+		std::cout << "Please enter the birthday(YYYY/MM/DD): ";
+		std::getline(std::cin, tempBirthday);
 
-					   std::cin >> birthdayToRemove;
+		//Insert Node in Birthday Tree
+		bdayBst->add(bdayBst->getRoot(), tempBirthday);
+		}
 
-					   nameBst->remove(nameBst->getRoot(), nameToRemove);
-					   bdayBst->remove(bdayBst->getRoot(), birthdayToRemove);
-					   }
+		// *********** removeNode(BinarySearchTree<std::string>*, BinarySearchTree<std::string>*)
+		//	params: nameBst - pointer to name tree
+		//			bdayBst - pointer to bday tree
+		//  helper function to remove a node from name and bday tree
+		void removeNode(BinarySearchTree<std::string>* nameBst, BinarySearchTree<std::string>* bdayBst)
+		{
+		std::string nameToRemove, birthdayToRemove;
 
-					   // *********** searchByName(BinarySearchTree<std::string>*)
-					   //	params: nameBst - pointer to name tree
-					   //  helper function to search name tree
-					   void searchByName(BinarySearchTree<std::string>* nameBst)
-					   {
-					   std::string userSearchValue;
+		std::cout << std::endl << "Please enter the first name and last name of the" << std::endl;
+		std::cout << std::endl << "person you would like to remove (fname lname): ";
+		std::cin.ignore(10, '\n');
+		std::getline(std::cin, nameToRemove);
 
-					   std::cin.ignore(10, '\n');
+		std::cout << std::endl << "Please enter the birthday of the" << std::endl;
+		std::cout << std::endl << "person you would like to remove (YYYY/MM/DD): ";
 
-					   std::cout << "Please enter the first name and last name of the person you would like to find (fname lname): ";
-					   std::getline(std::cin, userSearchValue);
+		std::cin >> birthdayToRemove;
 
-					   bool searchResult = nameBst->search(nameBst->getRoot(), userSearchValue);
+		nameBst->remove(nameBst->getRoot(), nameToRemove);
+		bdayBst->remove(bdayBst->getRoot(), birthdayToRemove);
+		}
 
-					   if (searchResult)
-					   std::cout << std::endl << userSearchValue << " was found!" << std::endl;
-					   else
-					   std::cout << std::endl << userSearchValue << " was not found!" << std::endl;
-					   }
+		// *********** searchByName(BinarySearchTree<std::string>*)
+		//	params: nameBst - pointer to name tree
+		//  helper function to search name tree
+		void searchByName(BinarySearchTree<std::string>* nameBst)
+		{
+		std::string userSearchValue;
 
-					   // *********** searchByBirthday(BinarySearchTree<std::string>*)
-					   //	params: bdayBst - pointer to bday tree
-					   //  helper function to search birthday tree
-					   void searchByBirthday(BinarySearchTree<std::string>* bdayBst)
-					   {
-					   std::string userSearchValue;
+		std::cin.ignore(10, '\n');
 
-					   std::cin.ignore(10, '\n');
-					   std::cout << "Please enter the birthday of the person you would like to find (YYYY/MM/DD) : ";
-					   std::getline(std::cin, userSearchValue);
+		std::cout << "Please enter the first name and last name of the person you would like to find (fname lname): ";
+		std::getline(std::cin, userSearchValue);
 
-					   bool searchResult = bdayBst->search(bdayBst->getRoot(), userSearchValue);
+		bool searchResult = nameBst->search(nameBst->getRoot(), userSearchValue);
 
-					   if (searchResult)
-					   std::cout << std::endl << userSearchValue << " was found!" << std::endl;
-					   else
-					   std::cout << std::endl << userSearchValue << " was not found!" << std::endl;
+		if (searchResult)
+		std::cout << std::endl << userSearchValue << " was found!" << std::endl;
+		else
+		std::cout << std::endl << userSearchValue << " was not found!" << std::endl;
+		}
 
-					   */
+		// *********** searchByBirthday(BinarySearchTree<std::string>*)
+		//	params: bdayBst - pointer to bday tree
+		//  helper function to search birthday tree
+		void searchByBirthday(BinarySearchTree<std::string>* bdayBst)
+		{
+		std::string userSearchValue;
+
+		std::cin.ignore(10, '\n');
+		std::cout << "Please enter the birthday of the person you would like to find (YYYY/MM/DD) : ";
+		std::getline(std::cin, userSearchValue);
+
+		bool searchResult = bdayBst->search(bdayBst->getRoot(), userSearchValue);
+
+		if (searchResult)
+		std::cout << std::endl << userSearchValue << " was found!" << std::endl;
+		else
+		std::cout << std::endl << userSearchValue << " was not found!" << std::endl;
+
+		*/
 }
 
