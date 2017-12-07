@@ -69,6 +69,9 @@ std::string MyCar::printCar()
 	return  VIN + " " + make + " " + model + " " + year;
 }
 
+MyCar::~MyCar(){
+	delete this;
+}
 #endif /* car_h */
 
 #pragma once

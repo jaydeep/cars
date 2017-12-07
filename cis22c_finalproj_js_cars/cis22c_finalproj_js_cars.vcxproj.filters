@@ -29,5 +29,8 @@
     <ClInclude Include="binarysearchtree.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="hash.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
