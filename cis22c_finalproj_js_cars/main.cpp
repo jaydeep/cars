@@ -9,6 +9,7 @@
 
 int main() {
 	std::string filePath, tempInput;
+	int size = 0;
 	std::ifstream inputFile;
 	//char menuInput;
 
@@ -29,8 +30,6 @@ int main() {
 		inputFile.open(filePath);
 	}
 
-
-	int size = 0;
 	while (std::getline(inputFile, tempInput))
 	{
 		size = size + 1;
@@ -51,7 +50,7 @@ int main() {
 	std::string model;
 	std::string year;
 	std::size_t found;
-	int counter = 0;
+	//int counter = 0;
 	MyCar *mycar1;
 	while (std::getline(inputFile, tempInput))
 	{
@@ -84,41 +83,12 @@ int main() {
 		}
 
 		mycar1 = new MyCar(VIN, make, model, year);
-		//head.addRecord(mycar1);
-		//p_hash.add(mycar1);
-		//std::cout << mycar1->printCar() << '\n';
+		head.addRecord(mycar1);
 	}
 	//Close file now that we are done with it
 	inputFile.close();
 
-	
 
-	//std::cout << "Printing ALL\n";
-	//p_hash.find("001234567890");
-	//p_hash.printAll();
-	//p_hash.deleteEven();
-	//p_hash.printAll();
-	
-
-	//testing addRecord()
-    MyCar* tempCar = new MyCar("000000000", "BMW", "M3", "2008");
-	MyCar* tempCar1 = new MyCar("000000001", "BMW", "Z4M", "2007");
-
-	head.addRecord(tempCar);
-	head.addRecord(tempCar1);
-
-	head.printTable();
-	head.printSortedTable();
-	//p_hash.printAll();
-
-	//testing search
-	std::cout << "Removing Record......\n";
-	head.removeRecord(tempCar);
-	head.removeRecord(tempCar1);
-
-	head.printTable();
-	head.printSortedTable();
-	head.efficiency_stats();
 	system("pause");
 	return 0;
 }
