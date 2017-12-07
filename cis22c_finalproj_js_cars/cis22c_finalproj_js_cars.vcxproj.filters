@@ -29,10 +29,10 @@
     <ClInclude Include="binarysearchtree.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="headnode.h">
+    <ClInclude Include="hash.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="hashtable.h">
+    <ClInclude Include="headnode.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

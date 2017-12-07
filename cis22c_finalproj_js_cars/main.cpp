@@ -1,211 +1,71 @@
 //
 //  main.cpp
-//  cis22c_finalproj_js_cars
+//  cis22c_final_project_js
 //
 //  Created by Jaydeep Singh on 11/20/17.
 //  Copyright © 2017 DeAnza. All rights reserved.
 //
-
-#include <iostream>
-#include <fstream>
-#include <string>
-#include "binarysearchtree.h"
 #include "headnode.h"
-#include "car.h"
-#include "hashtable.h"
-#include <unordered_map>
 
-//helper functions for menu 
-void addRecord();
-void removeRecord();
-void searchByVIN();
-void searchByYear();
-void searchByMake();
-void listDataInHashTableSeq();
-void listDataInSortedKeySeq();
-void printIndentedTree();
-void printEfficiency();
-
-//main
 int main() {
-	std::string filePath, tempVIN, tempMake, tempModel, tempYear;
+	std::string filePath, tempInput, tempVIN, tempMake, tempModel, tempYear;
 	std::ifstream inputFile;
-	std::ofstream nameOutput, bdayOutput;
-	int counter = 0;
-
-	// Hashtable on vin number stores the pointer to car record
-	std::unordered_map<int, MyCar*> hashtable;
 	char menuInput;
 
-	//create the tree
-	BinarySearchTree<std::string>* carBst = new BinarySearchTree<std::string>();
-
 	std::cout << "Welcome to the BMW of Denver Downtown!" << std::endl;
-	std::cout << "Please enter the full file path that contains the car inventory." << std::endl;
-	std::cout << "(File should have one record per line and each line should have" << std::endl;
-	std::cout << "VIN, make, model and year of the car.) : " << std::endl;
+	std::cout << "Please enter the full file path that contains the 25+ records of cars." << std::endl;
+	std::cout << "One record per line and each line would have VIN, make, model and year of the car." << std::endl;
+	std::cout << "Enter file path here: ";
 
 	std::getline(std::cin, filePath);
-
 	inputFile.open(filePath);
 
 	while (!inputFile) //file input validation
 	{
 		std::cout << "Sorry, I could not find that file." << std::endl;
 		std::cout << "Please enter the full file path of the data " << std::endl;
-		std::cout << "you wish to load: ";
-
+		std::cout << "you wish to save: ";
 		std::getline(std::cin, filePath);
 		inputFile.open(filePath);
 	}
 
+	//count number of records in file
+	int size = 0;
+	while (std::getline(inputFile, tempInput))
+	{
+		size = size + 1;
+	}
+
+	//close file now that we are done counting the number of records
+	inputFile.close();
+
+	//declare a hashtable with size 3x of numRecords
+	MyHash p_hash = MyHash(3*size);
+
+	//open file to read data into hashtable and bst
+	inputFile.open(filePath);
+
 	std::cout << std::endl << "Loading file..." << std::endl << std::endl;
 
-	//get data from file and add them to tree
-	MyCar *myCar1;
-	while (inputFile >> tempVIN >> tempMake >> tempModel >> tempYear) //read records line by line
+	MyCar *tempCar;
+
+	while (inputFile >> tempVIN >> tempMake >> tempModel >> tempYear)
 	{
-		myCar1 = new MyCar(tempVIN, tempMake, tempModel, tempYear);
-		counter += 1;
-		hashtable[counter] = myCar1;
-		std::cout << myCar1->printCar() << std::endl;
+		tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
+		p_hash.add(tempCar);
 	}
 
-	//Menu
-	std::cout << std::endl << std::endl << "Menu: " << std::endl;
-	std::cout << "  [a] Add new data" << std::endl;
-	std::cout << "  [b] Delete data " << std::endl;
-	std::cout << "  [c] Search by primary key/VIN" << std::endl;
-	std::cout << "  [d] Search by year" << std::endl;
-	std::cout << "  [e] Search by make" << std::endl;
-	std::cout << "  [f] List data in hash table sequence" << std::endl;
-	std::cout << "  [g] List data in sorted key sequence" << std::endl;
-	std::cout << "  [h] Print Indented Tree" << std::endl;
-	std::cout << "  [i] Efficiency" << std::endl;
-	std::cout << "  [q] Quit" << std::endl;
-	std::cout << std::endl << "Please enter a letter to select a menu option: ";
-	std::cin >> menuInput;
-	menuInput = tolower(menuInput);
+	//Close file now that we are done with it
+	inputFile.close();
 
-	//Menu handling
-	while (menuInput != 'q')
-	{
-		switch (menuInput)
-		{
-		case 'a':
-			addRecord();
-			break;
-		case 'b':
-			removeRecord();
-			break;
-		case 'c':
-			searchByVIN();
-			break;
-		case 'd':
-			searchByYear();
-			break;
-		case 'e':
-			searchByMake();
-			break;
-		case 'f':
-			listDataInHashTableSeq();
-			break;
-		case 'g':
-			listDataInSortedKeySeq();
-			break;
-		case 'h':
-			printIndentedTree();
-			break;
-		case 'i':
-			printEfficiency();
-			break;
-		default:
-			std::cout << "That was an invalid input. ";
-			break;
-		}
-
-		std::cout << std::endl << std::endl << "Menu: " << std::endl;
-		std::cout << "  [a] Add new data" << std::endl;
-		std::cout << "  [b] Delete data " << std::endl;
-		std::cout << "  [c] Search by primary key/VIN" << std::endl;
-		std::cout << "  [d] Search by year [team choice]" << std::endl;
-		std::cout << "  [e] Search by make [team choice]" << std::endl;
-		std::cout << "  [f] List data in hash table sequence" << std::endl;
-		std::cout << "  [g] List data in sorted key sequence" << std::endl;
-		std::cout << "  [h] Print Indented Tree" << std::endl;
-		std::cout << "  [i] Efficiency" << std::endl;
-		std::cout << "  [q] Quit" << std::endl;
-		std::cout << std::endl << "Please enter a letter to select a menu option: ";
-		std::cin >> menuInput;
-		menuInput = tolower(menuInput);
-	}
-
-	////Save name tree to file
-	//std::cin.ignore(10, '\n');
-	//std::cout << "Where would you like to save the name tree: ";
-	//std::getline(std::cin, nameOutputFile);
-	//nameOutput.open(nameOutputFile);
-
-	////Save bday tree to file
-	//std::cout << "Where would you like to save the birthday tree: ";
-	//std::getline(std::cin, bdayOutputFile);
-	//bdayOutput.open(bdayOutputFile);
-
-	//nameBst->printBreadthFirst(nameOutput, nameBst->getRoot());
-	//bdayBst->printDepthFirst(bdayOutput, bdayBst->getRoot());
-
-	////Close output files
-	//bdayOutput.close();
-	//nameOutput.close();
-
-	std::cout << std::endl << "Thanks for using this program. Goodbye!" << std::endl;
-
-	inputFile.close(); //Close file now that we are done with it
+	std::cout << "Printing ALL\n";
+	p_hash.find("001234567890");
+	p_hash.printAll();
+	p_hash.deleteEven();
+	p_hash.printAll();
+	p_hash.efficiency_stats();
+	//headNode *myHeadNode = new headNode(25, 25, p_hash, carBst);
 	system("pause");
 	return 0;
 }
 
-void addRecord()
-{
-
-}
-
-void removeRecord()
-{
-
-}
-
-void searchByVIN()
-{
-
-}
-
-void searchByYear()
-{
-
-}
-
-void searchByMake()
-{
-
-}
-
-void listDataInHashTableSeq()
-{
-
-}
-
-void listDataInSortedKeySeq()
-{
-
-}
-
-void printIndentedTree()
-{
-
-}
-
-void printEfficiency()
-{
-
-}

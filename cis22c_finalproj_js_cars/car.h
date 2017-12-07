@@ -1,6 +1,6 @@
 //
 //  car.h
-//  cis22c_lab5_js
+//  cis22c_final_project_js
 //
 //  Created by Jaydeep Singh on 11/21/17.
 //  Copyright © 2017 DeAnza. All rights reserved.
@@ -19,7 +19,6 @@ private:
 
 public:
 	MyCar(std::string, std::string, std::string, std::string);
-
 	~MyCar();
 	std::string getVIN();
 	std::string getMake();
@@ -39,8 +38,6 @@ MyCar::MyCar(std::string myVIN, std::string mymake, std::string mymodel, std::st
 
 }
 
-
-
 //get VIN
 std::string MyCar::getVIN()
 {
@@ -58,17 +55,20 @@ std::string MyCar::getMake()
 {
 	return make;
 }
+
 //get Model
 std::string MyCar::getModel()
 {
 	return model;
 }
 
+//return string of car value
 std::string MyCar::printCar()
 {
 	return  VIN + " " + make + " " + model + " " + year;
 }
 
+MyCar::~MyCar(){
+}
 #endif /* car_h */
 
-#pragma once
