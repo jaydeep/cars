@@ -85,7 +85,59 @@ int main() {
 	inputFile.close();
 
 	//Menu
+	std::cout << std::endl << std::endl << "Menu: " << std::endl;
+	std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
+	std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
+	std::cout << "  [c] Add Node" << std::endl;
+	std::cout << "  [d] Search by name" << std::endl;
+	std::cout << "  [e] Search by birth date" << std::endl;
+	std::cout << "  [f] Remove Node" << std::endl;
+	std::cout << "  [q] Quit" << std::endl;
+	std::cout << std::endl << "Please enter a letter to select a menu option: ";
+	std::cin >> menuInput;
+	menuInput = tolower(menuInput);
 
+	//Menu handling
+	while (menuInput != 'q')
+	{
+		switch (menuInput)
+		{
+			case 'a':
+				//std::cout << std::endl << "Printing the name tree..." << std::endl;
+				//nameBst->printBreadthFirstStdOut(nameBst->getRoot());
+				break;
+			case 'b':
+				//std::cout << std::endl << "Printing the birthday tree..." << std::endl;
+				break;
+			case 'c':
+				//addNode(nameBst, bdayBst);
+				break;
+			case 'd':
+				//searchByName(nameBst);
+				break;
+			case 'e':
+				//searchByBirthday(bdayBst);
+				break;
+			case 'f':
+				//removeNode(nameBst, bdayBst);
+				break;
+			default:
+				std::cout << "That was an invalid input. ";
+				break;
+		}
+
+		std::cout << std::endl << std::endl << "Menu: " << std::endl;
+		std::cout << "  [a] Print Name Tree (breadth first traversal)" << std::endl;
+		std::cout << "  [b] Print Birthday Tree (depth first traversal)  " << std::endl;
+		std::cout << "  [c] Add Node" << std::endl;
+		std::cout << "  [d] Search by name" << std::endl;
+		std::cout << "  [e] Search by birth date" << std::endl;
+		std::cout << "  [f] Remove Node" << std::endl;
+		std::cout << "  [q] Quit" << std::endl;
+		std::cout << std::endl << "Please enter a letter to select a menu option: ";
+		std::cin >> menuInput;
+		menuInput = tolower(menuInput);
+	}
 
 
 	system("pause");
