@@ -38,8 +38,6 @@ MyCar::MyCar(std::string myVIN, std::string mymake, std::string mymodel, std::st
 
 }
 
-
-
 //get VIN
 std::string MyCar::getVIN()
 {
@@ -57,20 +55,20 @@ std::string MyCar::getMake()
 {
 	return make;
 }
+
 //get Model
 std::string MyCar::getModel()
 {
 	return model;
 }
 
+//return string of car value
 std::string MyCar::printCar()
 {
 	return  VIN + " " + make + " " + model + " " + year;
 }
 
 MyCar::~MyCar(){
-	//delete this;
 }
 #endif /* car_h */
 
-#pragma once

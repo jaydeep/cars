@@ -5,17 +5,12 @@
 //  Created by Jaydeep Singh on 11/20/17.
 //  Copyright © 2017 DeAnza. All rights reserved.
 //
-#include <fstream>
 #include "headnode.h"
 
 int main() {
-	std::string filePath, tempInput, tempInput1, nameOutputFile, bdayOutputFile;
+	std::string filePath, tempInput;
 	std::ifstream inputFile;
-	std::ofstream nameOutput, bdayOutput;
-	// Hashtable on vin number stores the pointer to car record
-	//std::hash<char*> ptr_hash;
-	//std::unordered_map<int, MyCar*> hashtable;
-	char menuInput;
+	//char menuInput;
 
 	std::cout << "Welcome to the BMW of Denver Downtown!" << std::endl;
 	std::cout << "Please enter the full file path that contains the 25+ records of cars." << std::endl;

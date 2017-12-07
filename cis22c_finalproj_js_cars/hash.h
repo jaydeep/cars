@@ -7,7 +7,6 @@
 //
 #ifndef hash_h
 #define hash_h
-#include <string>
 #include <iostream>
 #include "car.h"
 #define A 54059 /* a prime */
