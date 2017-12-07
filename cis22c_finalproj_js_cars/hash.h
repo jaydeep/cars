@@ -31,7 +31,7 @@ public:
 	void add(MyCar*);
 	bool remove(std::string);
 	int find_empty_slot(unsigned);
-	void find(std::string);
+	MyCar* find(std::string);
 	void printAll();
 	void deleteEven();
 	unsigned hash_str(const char* s);
@@ -148,9 +148,9 @@ bool MyHash::remove(std::string vin)
 	return true;
 }
 
-void MyHash::find(std::string vin)
+MyCar* MyHash::find(std::string vin)
 {
-	//std::hash<char*> ptr_hash;
+	num_operations++;
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
 	int hash_value = hash_str(vin_ptr) % hashSize;
@@ -161,8 +161,7 @@ void MyHash::find(std::string vin)
 	while (done == 0) {
 		if (table[next_slot] == NULL) {
 			// We hit empty slot, so VIN does not exist
-			std::cout << "VIN does not exist " << vin << "slot = " << next_slot;
-			return;
+			return NULL;
 		}
 		else {
 			if (table[next_slot] == NULL_record) {
@@ -173,10 +172,7 @@ void MyHash::find(std::string vin)
 			else {
 				tempvin = table[next_slot]->getVIN();
 				if (vin == tempvin) {
-					// We found the record to be printed
-					std::cout << "VIN exists in " << vin << "slot = " << next_slot << "\n";
-					table[next_slot]->printCar();
-					return;
+					return table[next_slot];
 				}
 				else {
 					// Keep searching
@@ -202,29 +198,9 @@ void MyHash::printAll()
 		std::cout << i << " is deleted record\n";
 		}
 		else {
-			std::cout << "slot " << i << ": " << table[i]->printCar() << "\n";
+			std::cout << "Slot " << i << ": " << table[i]->printCar() << std::endl;
 		}
 		i++;
-	}
-}
-
-void MyHash::deleteEven()
-{
-	// We use libary function std::hash to find integer hash value and use modulo operator to restrict to size of table
-	int i = 0;
-	while (i < hashSize)
-	{
-		//std::cout << i << "\n";
-		if (table[i] == NULL) {
-			std::cout << i << " is empty slot\n";
-		}
-		else if (table[i] == NULL_record) {
-			std::cout << i << " is deleted record\n";
-		}
-		else {
-			remove(table[i]->getVIN());
-		}
-		i = i +2;
 	}
 }
 

@@ -25,6 +25,7 @@ public:
 	std::string getModel();
 	std::string getYear();
 	std::string printCar();
+	std::string getValue();
 
 };
 
@@ -68,6 +69,12 @@ std::string MyCar::printCar()
 	return  VIN + " " + make + " " + model + " " + year;
 }
 
+std::string MyCar::getValue()
+{
+	return printCar();
+}
+
+//destructor does nothing
 MyCar::~MyCar(){
 }
 #endif /* car_h */

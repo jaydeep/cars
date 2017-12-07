@@ -145,7 +145,6 @@ template <class Data> MyNode<Data>* BinarySearchTree<Data>::findMinNode(MyNode<D
 // finds ValueToDelete and then removes that node from the tree
 template <typename Data> MyNode<Data>* BinarySearchTree<Data>::remove(MyNode<Data>* node, Data valueToDelete)
 {
-	MyNode<Data>* save;
 	if (node == NULL)
 		return node;
 	if (valueToDelete < node->getValue())

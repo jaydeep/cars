@@ -8,7 +8,8 @@
 #include "headnode.h"
 
 void add(headNode);
-
+void remove(headNode);
+void searchByVIN(headNode);
 
 int main() {
 	std::string filePath, tempInput, VIN, make, model, year;
@@ -44,7 +45,7 @@ int main() {
 	inputFile.close();
 
 	MyHash p_hash = MyHash(3*size); //use 3*size for better efficiency
-	BinarySearchTree<std::string>* p_tree = new BinarySearchTree<std::string>();
+	BinarySearchTree<MyCar*>* p_tree = new BinarySearchTree<MyCar*>();
 	headNode head = headNode(25, 25, p_hash, p_tree);
 	inputFile.open(filePath);
 
@@ -113,9 +114,11 @@ int main() {
 				break;
 			case 'b':
 				//Remove record
+				remove(head);
 				break;
 			case 'c':
 				//Search By VIN
+				searchByVIN(head);
 				break;
 			case 'd':
 				//Print Table
@@ -180,4 +183,41 @@ void add(headNode head)
 
 	MyCar* tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
 	head.addRecord(tempCar);
+}
+
+void remove(headNode head)
+{
+	std::string keyToRemove;
+	std::cout << "What is the VIN of the car you wish to remove: ";
+	std::cin >> keyToRemove;
+
+	//search for key, if not found, return, if found, remove it, and tell user successfully deleted
+	if (!head.search(keyToRemove))
+	{
+		std::cout << "VIN not found. Returning to main menu." << std::endl;
+		return;
+	}
+	else
+	{
+		//found the VIN
+		head.removeRecord(keyToRemove);
+	}
+}
+
+void searchByVIN(headNode head)
+{
+	std::string vinToSearch;
+	std::cout << "What is the VIN of the car: ";
+	std::cin >> vinToSearch;
+
+	if (!head.search(vinToSearch))
+	{
+		std::cout << "VIN not found. Returning to main menu." << std::endl;
+		return;
+	}
+	else
+	{
+		std::cout << "VIN found. Data for car shown below." << std::endl;
+		std::cout << (head.getRecord(vinToSearch))->printCar() << std::endl;
+	}
 }
