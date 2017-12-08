@@ -206,7 +206,7 @@ template <typename Data> MyNode<Data>* BinarySearchTree<Data>::search(MyNode<Dat
 template <typename Data> void BinarySearchTree<Data>::printBreadthFirst(std::ofstream &output, MyNode<Data>* node)
 {
 	if (node != NULL) {
-		output << (*node)->getValue() << "\n";
+		output << node->getValue() << "\n";
 		printBreadthFirst(output, node->getLeft());
 		printBreadthFirst(output, node->getRight());
 	}

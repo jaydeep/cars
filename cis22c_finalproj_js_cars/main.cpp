@@ -86,14 +86,14 @@ int main() {
 
 	//Menu
 	std::cout << std::endl << std::endl << "Menu: " << std::endl;
-	std::cout << "  [a] Add record" << std::endl;
-	std::cout << "  [b] Remove record" << std::endl;
+	std::cout << "  [a] Add Record" << std::endl;
+	std::cout << "  [b] Remove Record" << std::endl;
 	std::cout << "  [c] Search by VIN" << std::endl;
 	std::cout << "  [d] Print Table" << std::endl;
 	std::cout << "  [e] Print Table (sorted by key value)" << std::endl;
 	std::cout << "  [f] Print Indented Tree" << std::endl;
 	std::cout << "  [g] Print Efficiency of Table" << std::endl;
-	std::cout << "  [h] TODO OPTION" << std::endl;
+	std::cout << "  [h] Write to File" << std::endl;
 	std::cout << "  [q] Quit" << std::endl;
 	std::cout << std::endl << "Please enter a letter to select a menu option: ";
 	std::cin >> menuInput;
@@ -133,7 +133,8 @@ int main() {
 				head.efficiency_stats();
 				break;
 			case 'h':
-				//TODO Option
+				//Write to File
+				head.writeToFile();
 				break;
 			default:
 				std::cout << "That was an invalid input. ";
@@ -141,14 +142,14 @@ int main() {
 		}
 
 		std::cout << std::endl << std::endl << "Menu: " << std::endl;
-		std::cout << "  [a] Add record" << std::endl;
-		std::cout << "  [b] Remove record" << std::endl;
+		std::cout << "  [a] Add Record" << std::endl;
+		std::cout << "  [b] Remove Record" << std::endl;
 		std::cout << "  [c] Search by VIN" << std::endl;
 		std::cout << "  [d] Print Table" << std::endl;
 		std::cout << "  [e] Print Table (sorted by key value)" << std::endl;
 		std::cout << "  [f] Print Indented Tree" << std::endl;
 		std::cout << "  [g] Print Efficiency of Table" << std::endl;
-		std::cout << "  [h] TODO OPTION" << std::endl;
+		std::cout << "  [h] Write to File" << std::endl;
 		std::cout << "  [q] Quit" << std::endl;
 		std::cout << std::endl << "Please enter a letter to select a menu option: ";
 		std::cin >> menuInput;
