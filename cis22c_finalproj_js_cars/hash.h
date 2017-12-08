@@ -33,7 +33,6 @@ public:
 	int find_empty_slot(unsigned);
 	MyCar* find(std::string);
 	void printAll();
-	void deleteEven();
 	unsigned hash_str(const char* s);
 	void efficiency_stats();
 
@@ -59,7 +58,6 @@ MyHash::MyHash(int hash_size)
 	num_operations = 0;
 	int i = 0;
 	while (i < hashSize) {
-		//std::cout << i << "\n";
 		table[i] = NULL;
 		i++;
 	}
@@ -67,15 +65,15 @@ MyHash::MyHash(int hash_size)
 
 void MyHash::add(MyCar* value)
 {
-	num_operations++;
+	num_operations += 1;
 	std::string  vin = value->getVIN();
-	//std::hash<char*> ptr_hash;
+
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
 	unsigned hash_value = hash_str(vin_ptr);
 	int myslot = find_empty_slot(hash_value);
 	if (myslot > 0) {
-	    std::cout << "slot= " << myslot << " vin= " << vin << "\n";
+	    //std::cout << "slot= " << myslot << " vin= " << vin << "\n";
 	    table[myslot] = value;
     }
     else {
@@ -107,7 +105,7 @@ int MyHash::find_empty_slot(unsigned hash1) {
 
 bool MyHash::remove(std::string vin)
 {
-	num_operations++;
+	num_operations += 1;
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
 	unsigned hash_value = hash_str(vin_ptr);
@@ -150,7 +148,7 @@ bool MyHash::remove(std::string vin)
 
 MyCar* MyHash::find(std::string vin)
 {
-	num_operations++;
+	num_operations += 1;
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
 	int hash_value = hash_str(vin_ptr) % hashSize;
@@ -222,6 +220,6 @@ unsigned MyHash::hash_str(const char* s)
 		h = (h * A) ^ (s[0] * B);
 		s++;
 	}
-	return h % hashSize; // or return h % C;
+	return h % hashSize;
 }
 #endif /* hash_h */

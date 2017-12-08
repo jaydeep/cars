@@ -110,15 +110,15 @@ int main() {
 		{
 			case 'a':
 				//Add Record
-				add(head);
+				head.add();
 				break;
 			case 'b':
 				//Remove record
-				remove(head);
+				head.remove();
 				break;
 			case 'c':
 				//Search By VIN
-				searchByVIN(head);
+				head.searchByVIN();
 				break;
 			case 'd':
 				//Print Table
@@ -165,44 +165,44 @@ int main() {
 	return 0;
 }
 
-void add(headNode head)
-{
-	std::string tempVIN, tempMake, tempModel, tempYear;
-
-	std::cout << "Please enter the 10 digit VIN Number: ";
-	std::cin >> tempVIN;
-
-	std::cout << "Please enter the make: ";
-	std::cin >> tempMake;
-
-	std::cout << "Please enter the model";
-	std::cin >> tempModel;
-
-	std::cout << "Please enter the year of the car: ";
-	std::cin >> tempYear;
-
-	MyCar* tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
-	head.addRecord(tempCar);
-}
-
-void remove(headNode head)
-{
-	std::string keyToRemove;
-	std::cout << "What is the VIN of the car you wish to remove: ";
-	std::cin >> keyToRemove;
-
-	//search for key, if not found, return, if found, remove it, and tell user successfully deleted
-	if (!head.search(keyToRemove))
-	{
-		std::cout << "VIN not found. Returning to main menu." << std::endl;
-		return;
-	}
-	else
-	{
-		//found the VIN
-		head.removeRecord(keyToRemove);
-	}
-}
+//void add(headNode head)
+//{
+//	std::string tempVIN, tempMake, tempModel, tempYear;
+//
+//	std::cout << "Please enter the 10 digit VIN Number: ";
+//	std::cin >> tempVIN;
+//
+//	std::cout << "Please enter the make: ";
+//	std::cin >> tempMake;
+//
+//	std::cout << "Please enter the model";
+//	std::cin >> tempModel;
+//
+//	std::cout << "Please enter the year of the car: ";
+//	std::cin >> tempYear;
+//
+//	MyCar* tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
+//	head.addRecord(tempCar);
+//}
+//
+//void remove(headNode head)
+//{
+//	std::string keyToRemove;
+//	std::cout << "What is the VIN of the car you wish to remove: ";
+//	std::cin >> keyToRemove;
+//
+//	//search for key, if not found, return, if found, remove it, and tell user successfully deleted
+//	if (!head.search(keyToRemove))
+//	{
+//		std::cout << "VIN not found. Returning to main menu." << std::endl;
+//		return;
+//	}
+//	else
+//	{
+//		//found the VIN
+//		head.removeRecord(keyToRemove);
+//	}
+//}
 
 void searchByVIN(headNode head)
 {
