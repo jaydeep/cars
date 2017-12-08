@@ -17,7 +17,7 @@
 class MyHash
 {
 private:
-	MyCar** table;
+	MyCar** table; //array of MyCar*
 	MyCar* NULL_record;
 	int hashSize;
 	int num_collisions; // for add and remove
