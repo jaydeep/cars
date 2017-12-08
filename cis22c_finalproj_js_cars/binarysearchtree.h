@@ -21,6 +21,7 @@ public:
 	BinarySearchTree();
 	~BinarySearchTree();
 	void deleteTree(MyNode<Data>*);
+	int compare(MyNode<Data>*, MyNode<Data>*);
 	MyNode<Data>* getRoot();
 	void setRoot(MyNode<Data>*);
 	void add(MyNode<Data>*, Data);
@@ -61,6 +62,17 @@ template <typename Data> void BinarySearchTree<Data>::deleteTree(MyNode<Data>* n
 		delete node;
 	}
 }
+
+template <typename Data> int BinarySearchTree<Data>::compare(MyNode<Data>* leftNode, MyNode<Data>* rightNode)
+{
+	//return 1 if left is greater than right
+	//return 0 if left is equal to right
+	//return -1 if left is less than right
+	leftNode->getValue();
+	rightNode->getValue();
+
+}
+
 //returns the root
 template <typename Data> MyNode<Data>* BinarySearchTree<Data>::getRoot()
 {
@@ -86,7 +98,7 @@ template <typename Data> void BinarySearchTree<Data>::add(MyNode<Data>* node, Da
 		root = node;
 	}
 	else {
-		if (node->getValue() > newData) {
+		if (node->getValue() > newData) { // fix this
 			if (node->getLeft() == NULL) {
 				node->setLeft(new MyNode<Data>(newData));
 			}
@@ -120,7 +132,7 @@ template <typename Data> bool BinarySearchTree<Data>::edit(MyNode<Data>* node, D
 			node->setValue(newData);
 			return true;
 		}
-		else if (node->getValue() < oldData) {
+		else if (node->getValue() < oldData) { //fix this
 			edit(node->getRight(), oldData, newData);
 		}
 		else {
@@ -147,11 +159,11 @@ template <typename Data> MyNode<Data>* BinarySearchTree<Data>::remove(MyNode<Dat
 {
 	if (node == NULL)
 		return node;
-	if (valueToDelete < node->getValue())
+	if (valueToDelete < node->getValue()) //fix this
 	{
 		node->setLeft(remove(node->getLeft(), valueToDelete));
 	}
-	else if (valueToDelete > node->getValue())
+	else if (valueToDelete > node->getValue()) //fix this
 	{
 		node->setRight(remove(node->getRight(), valueToDelete));
 	}
@@ -191,9 +203,9 @@ template <typename Data> MyNode<Data>* BinarySearchTree<Data>::remove(MyNode<Dat
 // walks the tree to find valueToFind in tree, else returns NULL
 template <typename Data> MyNode<Data>* BinarySearchTree<Data>::search(MyNode<Data>* node, Data valueToFind)
 {
-	if (node != NULL || node->getValue() == valueToFind)
+	if (node != NULL || node->getValue() == valueToFind) //fix this
 		return node;
-	if (valueToFind < node->getValue())
+	if (valueToFind < node->getValue()) //fix this
 		return search(node->getLeft(), valueToFind);
 	else
 		return search(node->getRight(), valueToFind);

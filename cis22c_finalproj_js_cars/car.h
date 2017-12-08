@@ -30,7 +30,7 @@ public:
 };
 
 //Default Constructor
-MyCar::MyCar(std::string myVIN, std::string mymake, std::string mymodel, std::string myyear)
+MyCar::MyCar(std::string myVIN = "XXX", std::string mymake = "DNE", std::string mymodel = "DNE", std::string myyear = "1776")
 {
 	VIN = myVIN;
 	make = mymake;

@@ -31,6 +31,7 @@ public:
 	void add(MyCar*);
 	bool remove(std::string);
 	int find_empty_slot(unsigned);
+	bool search(std::string);
 	MyCar* find(std::string);
 	void printAll();
 	unsigned hash_str(const char* s);
@@ -74,7 +75,7 @@ void MyHash::add(MyCar* value)
 	int myslot = find_empty_slot(hash_value);
 	if (myslot > 0) {
 	    //std::cout << "slot= " << myslot << " vin= " << vin << "\n";
-	    table[myslot] = value;
+	    table[myslot] = value; //this may not work now
     }
     else {
 		std::cout << "FAILED TO ADD DATA AS NO EMPTY SLOT FOUND\n";
@@ -144,6 +145,11 @@ bool MyHash::remove(std::string vin)
 		}
 	}
 	return true;
+}
+
+bool MyHash::search(std::string vin)
+{
+	//TODO
 }
 
 MyCar* MyHash::find(std::string vin)
