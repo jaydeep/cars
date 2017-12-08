@@ -24,6 +24,7 @@ public:
 	void printSortedTable();
 	void headNode::efficiency_stats();
 	MyCar* getRecord(std::string);
+	void writeToFile();
 };
 
 headNode::headNode(int c, int s, MyHash p, BinarySearchTree<MyCar*>* t)
@@ -142,5 +143,28 @@ void headNode::printSortedTable()
 MyCar* headNode::getRecord(std::string VIN)
 {
 	return pHash.find(VIN);
+}
+
+void headNode::writeToFile()
+{
+	std::ofstream output;
+	std::string outputFilePath;
+
+	std::cout << "Where would you like to save the file?" << std::endl;
+	std::cout << "Please enter the full file path here: ";
+	std::getline(std::cin, outputFilePath);
+	output.open(outputFilePath);
+
+	while (!output) //file path validation
+	{
+		std::cout << "Sorry, I could not find that file." << std::endl;
+		std::cout << "Please enter the full file path of the data " << std::endl;
+		std::cout << "you wish to save: ";
+		std::getline(std::cin, outputFilePath);
+		output.open(outputFilePath);
+	}
+
+	pTree->printBreadthFirst(output, pTree->getRoot());
+	std::cout << std::endl << "Successfully saved to file. Returning to main menu." << std::endl << std::endl;
 }
 #endif

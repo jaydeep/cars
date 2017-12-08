@@ -7,10 +7,6 @@
 //
 #include "headnode.h"
 
-void add(headNode);
-void remove(headNode);
-void searchByVIN(headNode);
-
 int main() {
 	std::string filePath, tempInput, VIN, make, model, year;
 	std::size_t found;
@@ -93,14 +89,14 @@ int main() {
 	
 	//Menu
 	std::cout << std::endl << std::endl << "Menu: " << std::endl;
-	std::cout << "  [a] Add record" << std::endl;
-	std::cout << "  [b] Remove record" << std::endl;
+	std::cout << "  [a] Add Record" << std::endl;
+	std::cout << "  [b] Remove Record" << std::endl;
 	std::cout << "  [c] Search by VIN" << std::endl;
 	std::cout << "  [d] Print Table" << std::endl;
 	std::cout << "  [e] Print Table (sorted by key value)" << std::endl;
 	std::cout << "  [f] Print Indented Tree" << std::endl;
 	std::cout << "  [g] Print Efficiency of Table" << std::endl;
-	std::cout << "  [h] TODO OPTION" << std::endl;
+	std::cout << "  [h] Write to File" << std::endl;
 	std::cout << "  [q] Quit" << std::endl;
 	std::cout << std::endl << "Please enter a letter to select a menu option: ";
 	std::cin >> menuInput;
@@ -140,7 +136,8 @@ int main() {
 				head.efficiency_stats();
 				break;
 			case 'h':
-				//TODO Option
+				//Write to File
+				head.writeToFile();
 				break;
 			default:
 				std::cout << "That was an invalid input. ";
@@ -148,14 +145,14 @@ int main() {
 		}
 
 		std::cout << std::endl << std::endl << "Menu: " << std::endl;
-		std::cout << "  [a] Add record" << std::endl;
-		std::cout << "  [b] Remove record" << std::endl;
+		std::cout << "  [a] Add Record" << std::endl;
+		std::cout << "  [b] Remove Record" << std::endl;
 		std::cout << "  [c] Search by VIN" << std::endl;
 		std::cout << "  [d] Print Table" << std::endl;
 		std::cout << "  [e] Print Table (sorted by key value)" << std::endl;
 		std::cout << "  [f] Print Indented Tree" << std::endl;
 		std::cout << "  [g] Print Efficiency of Table" << std::endl;
-		std::cout << "  [h] TODO OPTION" << std::endl;
+		std::cout << "  [h] Write to File" << std::endl;
 		std::cout << "  [q] Quit" << std::endl;
 		std::cout << std::endl << "Please enter a letter to select a menu option: ";
 		std::cin >> menuInput;
@@ -166,61 +163,4 @@ int main() {
 
 	system("pause");
 	return 0;
-}
-
-//void add(headNode head)
-//{
-//	std::string tempVIN, tempMake, tempModel, tempYear;
-//
-//	std::cout << "Please enter the 10 digit VIN Number: ";
-//	std::cin >> tempVIN;
-//
-//	std::cout << "Please enter the make: ";
-//	std::cin >> tempMake;
-//
-//	std::cout << "Please enter the model";
-//	std::cin >> tempModel;
-//
-//	std::cout << "Please enter the year of the car: ";
-//	std::cin >> tempYear;
-//
-//	MyCar* tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
-//	head.addRecord(tempCar);
-//}
-//
-//void remove(headNode head)
-//{
-//	std::string keyToRemove;
-//	std::cout << "What is the VIN of the car you wish to remove: ";
-//	std::cin >> keyToRemove;
-//
-//	//search for key, if not found, return, if found, remove it, and tell user successfully deleted
-//	if (!head.search(keyToRemove))
-//	{
-//		std::cout << "VIN not found. Returning to main menu." << std::endl;
-//		return;
-//	}
-//	else
-//	{
-//		//found the VIN
-//		head.removeRecord(keyToRemove);
-//	}
-//}
-
-void searchByVIN(headNode head)
-{
-	std::string vinToSearch;
-	std::cout << "What is the VIN of the car: ";
-	std::cin >> vinToSearch;
-
-	if (!head.search(vinToSearch))
-	{
-		std::cout << "VIN not found. Returning to main menu." << std::endl;
-		return;
-	}
-	else
-	{
-		std::cout << "VIN found. Data for car shown below." << std::endl;
-		std::cout << (head.getRecord(vinToSearch))->printCar() << std::endl;
-	}
 }
