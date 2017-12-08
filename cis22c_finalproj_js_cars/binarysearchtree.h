@@ -94,7 +94,7 @@ template <typename Data> void BinarySearchTree<Data>::add(MyNode<Data>* node, Da
 				this->add(node->getLeft(), newData, key1);
 			}
 		}
-		else {
+		else if (node->getKey() < key1) {
 			if (node->getRight() == NULL) {
 				node->setRight(new MyNode<Data>(newData, key1));
 			}
