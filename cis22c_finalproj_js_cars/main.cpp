@@ -84,8 +84,6 @@ int main() {
 	}
 	//Close file now that we are done with it
 	inputFile.close();
-	//p_tree->setRoot(p_tree->remove(p_tree->getRoot(), "001234567890"));
-	//p_tree->setRoot(p_tree->remove(p_tree->getRoot(), "93234567891"));
 	
 	//Menu
 	std::cout << std::endl << std::endl << "Menu: " << std::endl;
