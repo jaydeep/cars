@@ -7,10 +7,6 @@
 //
 #include "headnode.h"
 
-void add(headNode);
-void remove(headNode);
-void searchByVIN(headNode);
-
 int main() {
 	std::string filePath, tempInput, VIN, make, model, year;
 	std::size_t found;
@@ -163,61 +159,4 @@ int main() {
 
 	system("pause");
 	return 0;
-}
-
-//void add(headNode head)
-//{
-//	std::string tempVIN, tempMake, tempModel, tempYear;
-//
-//	std::cout << "Please enter the 10 digit VIN Number: ";
-//	std::cin >> tempVIN;
-//
-//	std::cout << "Please enter the make: ";
-//	std::cin >> tempMake;
-//
-//	std::cout << "Please enter the model";
-//	std::cin >> tempModel;
-//
-//	std::cout << "Please enter the year of the car: ";
-//	std::cin >> tempYear;
-//
-//	MyCar* tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
-//	head.addRecord(tempCar);
-//}
-//
-//void remove(headNode head)
-//{
-//	std::string keyToRemove;
-//	std::cout << "What is the VIN of the car you wish to remove: ";
-//	std::cin >> keyToRemove;
-//
-//	//search for key, if not found, return, if found, remove it, and tell user successfully deleted
-//	if (!head.search(keyToRemove))
-//	{
-//		std::cout << "VIN not found. Returning to main menu." << std::endl;
-//		return;
-//	}
-//	else
-//	{
-//		//found the VIN
-//		head.removeRecord(keyToRemove);
-//	}
-//}
-
-void searchByVIN(headNode head)
-{
-	std::string vinToSearch;
-	std::cout << "What is the VIN of the car: ";
-	std::cin >> vinToSearch;
-
-	if (!head.search(vinToSearch))
-	{
-		std::cout << "VIN not found. Returning to main menu." << std::endl;
-		return;
-	}
-	else
-	{
-		std::cout << "VIN found. Data for car shown below." << std::endl;
-		std::cout << (head.getRecord(vinToSearch))->printCar() << std::endl;
-	}
 }
