@@ -13,7 +13,7 @@ private:
 
 public:
 	headNode(int, int, MyHash, BinarySearchTree<MyCar*>*);
-	void addRecord(MyCar*);
+	void addRecord(MyCar*, std::string);
 	void add();
 	void removeRecord(std::string);
 	void remove();
@@ -34,10 +34,10 @@ headNode::headNode(int c, int s, MyHash p, BinarySearchTree<MyCar*>* t)
 	pTree = t;
 }
 
-void headNode::addRecord(MyCar* carToAdd)
+void headNode::addRecord(MyCar* carToAdd, std::string VIN)
 {
 	pHash.add(carToAdd);
-	pTree->add(pTree->getRoot(), carToAdd);
+	pTree->add(pTree->getRoot(), carToAdd, VIN);
 }
 
 void headNode::add()
@@ -57,16 +57,16 @@ void headNode::add()
 	std::cin >> tempYear;
 
 	MyCar* tempCar = new MyCar(tempVIN, tempMake, tempModel, tempYear);
-	addRecord(tempCar);
+	addRecord(tempCar, tempVIN);
 }
 
 void headNode::removeRecord(std::string vinOfCarToRemove)
 {
 	// Order of removing is important. Hash remove must be done last as it deletes the memory associated with the record
-	MyNode<MyCar*>* save;
-	save = pTree->remove(pTree->getRoot(), pHash.find(vinOfCarToRemove)); 
-	pTree->setRoot(save);
-	pHash.remove(vinOfCarToRemove);
+    MyNode<MyCar*>* save;
+    save = pTree->remove(pTree->getRoot(), vinOfCarToRemove); 
+    pTree->setRoot(save);
+    pHash.remove(vinOfCarToRemove);
 }
 
 void headNode::remove()

@@ -26,6 +26,7 @@ public:
 	std::string getYear();
 	std::string printCar();
 	std::string getValue();
+	std::string getKey();
 
 };
 
@@ -74,6 +75,10 @@ std::string MyCar::getValue()
 	return printCar();
 }
 
+std::string MyCar::getKey()
+{
+	return VIN;
+}
 //destructor does nothing
 MyCar::~MyCar(){
 }

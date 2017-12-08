@@ -23,10 +23,10 @@ public:
 	void deleteTree(MyNode<Data>*);
 	MyNode<Data>* getRoot();
 	void setRoot(MyNode<Data>*);
-	void add(MyNode<Data>*, Data);
-	bool edit(MyNode<Data>*, Data, Data);
-	MyNode<Data>* remove(MyNode<Data>*, Data);
-	MyNode<Data>* search(MyNode<Data>*, Data);
+	void add(MyNode<Data>*, Data, std::string);
+	bool edit(MyNode<Data>*, Data, std::string, Data, std::string);
+	MyNode<Data>* remove(MyNode<Data>*, std::string);
+	MyNode<Data>* search(MyNode<Data>*, std::string);
 	void printBreadthFirst(std::ofstream &, MyNode<Data>*);
 	void printBreadthFirstStdOut(MyNode<Data>*);
 	void printDepthFirst(std::ofstream &, MyNode<Data>*);
@@ -79,27 +79,27 @@ template <typename Data> void BinarySearchTree<Data>::setRoot(MyNode<Data>* newR
 // params - node - node to walk to add Data to to
 //			newData - new data to be added to tree
 // adds a node to the tree
-template <typename Data> void BinarySearchTree<Data>::add(MyNode<Data>* node, Data newData)
+template <typename Data> void BinarySearchTree<Data>::add(MyNode<Data>* node, Data newData, std::string key1)
 {
 	if (node == NULL) {
-		node = new MyNode<Data>(newData);
+		node = new MyNode<Data>(newData, key1);
 		root = node;
 	}
 	else {
-		if (node->getValue() > newData) {
+		if (node->getKey() > key1) {
 			if (node->getLeft() == NULL) {
-				node->setLeft(new MyNode<Data>(newData));
+				node->setLeft(new MyNode<Data>(newData, key1));
 			}
 			else {
-				this->add(node->getLeft(), newData);
+				this->add(node->getLeft(), newData, key1);
 			}
 		}
 		else {
 			if (node->getRight() == NULL) {
-				node->setRight(new MyNode<Data>(newData));
+				node->setRight(new MyNode<Data>(newData, key1));
 			}
 			else {
-				this->add(node->getRight(), newData);
+				this->add(node->getRight(), newData, key1);
 			}
 		}
 	}
@@ -108,23 +108,23 @@ template <typename Data> void BinarySearchTree<Data>::add(MyNode<Data>* node, Da
 //*********** edit(MyNode<Data>*, Data, Data)
 // params - node - node to walk to find node to edit
 //			oldData - old value of data to edit
+//			node->setValue(newData, newkey);
+//			return true;
+//		}
 //			newData - new value of data
 // finds node with value of oldData and then replaces it with value of newData
-template <typename Data> bool BinarySearchTree<Data>::edit(MyNode<Data>* node, Data oldData, Data newData)
+template <typename Data> bool BinarySearchTree<Data>::edit(MyNode<Data>* node, Data oldData, std::string oldkey,  Data newData, std::string newkey)
 {
 	if (node == NULL) {
 		return false;
 	}
 	else {
-		if (node->getValue() == oldData) {
-			node->setValue(newData);
-			return true;
-		}
-		else if (node->getValue() < oldData) {
-			edit(node->getRight(), oldData, newData);
+		if (node->getKey() == oldkey) {}
+		else if (node->getKey() < oldkey) {
+			edit(node->getRight(), oldData, oldkey, newData, newkey);
 		}
 		else {
-			edit(node->getLeft(), oldData, newData);
+			edit(node->getLeft(), oldData, oldkey, newData, newkey);
 
 		}
 	}
@@ -143,15 +143,15 @@ template <class Data> MyNode<Data>* BinarySearchTree<Data>::findMinNode(MyNode<D
 //********** remove(MyNode<Data>*, Data)
 // params - node - node to walk to find node to delete
 // finds ValueToDelete and then removes that node from the tree
-template <typename Data> MyNode<Data>* BinarySearchTree<Data>::remove(MyNode<Data>* node, Data valueToDelete)
+template <typename Data> MyNode<Data>* BinarySearchTree<Data>::remove(MyNode<Data>* node, std::string valueToDelete)
 {
 	if (node == NULL)
 		return node;
-	if (valueToDelete < node->getValue())
+	if (valueToDelete < node->getKey())
 	{
 		node->setLeft(remove(node->getLeft(), valueToDelete));
 	}
-	else if (valueToDelete > node->getValue())
+	else if (valueToDelete > node->getKey())
 	{
 		node->setRight(remove(node->getRight(), valueToDelete));
 	}
@@ -165,20 +165,20 @@ template <typename Data> MyNode<Data>* BinarySearchTree<Data>::remove(MyNode<Dat
 		}
 		else if (node->getLeft() == NULL)
 		{
-			MyNode<Data> *tempNode = new MyNode<Data>(node->getValue());
+			MyNode<Data> *tempNode = new MyNode<Data>(node->getValue(), node->getKey());
 			node = node->getRight();
 			delete tempNode;
 		}
 		else if (node->getRight() == NULL) {
-			MyNode<Data> *tempNode = new MyNode<Data>(node->getValue());
+			MyNode<Data> *tempNode = new MyNode<Data>(node->getValue(), node->getKey());
 			node = node->getLeft();
 			delete tempNode;
 		}
 		else {
 			// call min node function to get the minimum node
-			MyNode<Data> *minNode = new MyNode<Data>(findMinNode(node->getRight())->getValue());
-			node->setValue(minNode->getValue());
-			node->setRight(remove(node->getRight(), node->getValue()));
+			MyNode<Data> *minNode = new MyNode<Data>(findMinNode(node->getRight())->getValue(), findMinNode(node->getRight())->getKey());
+			node->setValue(minNode->getValue(), minNode->getKey());
+			//node->setRight(remove(node->getRight(), node->getKey()));
 			delete minNode;
 		}
 	}
@@ -189,9 +189,9 @@ template <typename Data> MyNode<Data>* BinarySearchTree<Data>::remove(MyNode<Dat
 // params - node - node to walk to find valueToFind
 //			valueToFind - value to search tree for
 // walks the tree to find valueToFind in tree, else returns NULL
-template <typename Data> MyNode<Data>* BinarySearchTree<Data>::search(MyNode<Data>* node, Data valueToFind)
+template <typename Data> MyNode<Data>* BinarySearchTree<Data>::search(MyNode<Data>* node, std::string valueToFind)
 {
-	if (node != NULL || node->getValue() == valueToFind)
+	if (node != NULL || node->getKey() == valueToFind)
 		return node;
 	if (valueToFind < node->getValue())
 		return search(node->getLeft(), valueToFind);
@@ -206,7 +206,7 @@ template <typename Data> MyNode<Data>* BinarySearchTree<Data>::search(MyNode<Dat
 template <typename Data> void BinarySearchTree<Data>::printBreadthFirst(std::ofstream &output, MyNode<Data>* node)
 {
 	if (node != NULL) {
-		output << (*node)->getValue() << "\n";
+		output << (*node)->getKey() << "\n";
 		printBreadthFirst(output, node->getLeft());
 		printBreadthFirst(output, node->getRight());
 	}
@@ -220,7 +220,7 @@ template <typename Data> void BinarySearchTree<Data>::printDepthFirst(std::ofstr
 {
 	if (node != NULL) {
 		printDepthFirst(output, node->getLeft());
-		output << node->getValue() << "\n";
+		output << node->getKey() << "\n";
 		printDepthFirst(output, node->getRight());
 	}
 
@@ -232,7 +232,7 @@ template <typename Data> void BinarySearchTree<Data>::printDepthFirst(std::ofstr
 template <typename Data> void BinarySearchTree<Data>::printBreadthFirstStdOut(MyNode<Data>* node)
 {
 	if (node != NULL) {
-		std::cout << node->getValue() << "\n";
+		std::cout << node->getKey() << "\n";
 		printBreadthFirstStdOut(node->getLeft());
 		printBreadthFirstStdOut(node->getRight());
 	}
@@ -245,7 +245,7 @@ template <typename Data> void BinarySearchTree<Data>::printDepthFirstStdOut(MyNo
 {
 	if (node != NULL) {
 		printDepthFirstStdOut(node->getLeft());
-		std::cout << node->getValue() << "\n";
+		std::cout << node->getKey() << "\n";
 		printDepthFirstStdOut(node->getRight());
 	}
 

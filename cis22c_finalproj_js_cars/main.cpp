@@ -83,11 +83,14 @@ int main() {
 		}
 
 		mycar1 = new MyCar(VIN, make, model, year);
-		head.addRecord(mycar1);
+		p_tree->add(p_tree->getRoot(), mycar1, VIN);
+		head.addRecord(mycar1, VIN);
 	}
 	//Close file now that we are done with it
 	inputFile.close();
-
+	//p_tree->setRoot(p_tree->remove(p_tree->getRoot(), "001234567890"));
+	//p_tree->setRoot(p_tree->remove(p_tree->getRoot(), "93234567891"));
+	
 	//Menu
 	std::cout << std::endl << std::endl << "Menu: " << std::endl;
 	std::cout << "  [a] Add record" << std::endl;
