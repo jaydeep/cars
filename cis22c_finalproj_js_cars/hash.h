@@ -67,7 +67,7 @@ MyHash::MyHash(int hash_size)
 void MyHash::add(MyCar* value)
 {
 	num_operations += 1;
-	std::string  vin = value->getVIN();
+	std::string vin = value->getVIN();
 
 	char vin_ptr[20];
 	strcpy_s(vin_ptr, vin.c_str());
@@ -84,9 +84,10 @@ void MyHash::add(MyCar* value)
 
 int MyHash::find_empty_slot(unsigned hash1) {
 	bool done = 0;
+
 	int attempt = 1;
 	unsigned next_slot = hash1;
-	while (done == 0) {
+	while (done == 0) { //fix this
 		if (table[next_slot] == NULL) {
 			return next_slot;
 		}
@@ -95,7 +96,9 @@ int MyHash::find_empty_slot(unsigned hash1) {
 				return next_slot;
 			}
 			else {
-				next_slot = (hash1 + attempt * attempt) % hashSize;
+				next_slot = (hash1 + attempt * attempt) % hashSize; //quadratic probing
+				if (attempt*attempt > 100)
+					return -1;
 				attempt++;
 				num_collisions++;
 			}
@@ -149,7 +152,7 @@ bool MyHash::remove(std::string vin)
 
 bool MyHash::search(std::string vin)
 {
-	//TODO
+	return false; //TODO
 }
 
 MyCar* MyHash::find(std::string vin)
