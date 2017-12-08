@@ -94,7 +94,7 @@ template <typename Data> void BinarySearchTree<Data>::add(MyNode<Data>* node, Da
 				this->add(node->getLeft(), newData, key1);
 			}
 		}
-		else {
+		else if (node->getKey() < key1) {
 			if (node->getRight() == NULL) {
 				node->setRight(new MyNode<Data>(newData, key1));
 			}
@@ -206,7 +206,7 @@ template <typename Data> MyNode<Data>* BinarySearchTree<Data>::search(MyNode<Dat
 template <typename Data> void BinarySearchTree<Data>::printBreadthFirst(std::ofstream &output, MyNode<Data>* node)
 {
 	if (node != NULL) {
-		output << (*node)->getKey() << "\n";
+		output << node->getKey() << "\n";
 		printBreadthFirst(output, node->getLeft());
 		printBreadthFirst(output, node->getRight());
 	}
